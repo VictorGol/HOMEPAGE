@@ -1,0 +1,38 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.wrap {
+    width: 100%;
+    height: 100%;
+    background: url('https://w.wallhaven.cc/full/g7/wallhaven-g7ryp7.jpg') 50% 50%/cover;
+    padding: 16px;
+    letter-spacing: 2px;
+    font-size: 16px;
+    font-family: courier-new, courier, monospace;
+    font-weight: 100;
+}
+
+.box {
+    padding: 10px;
+    color: #fff;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 94%;
+    box-sizing: border-box;
+    resize: none;
+    letter-spacing: 2px;
+    font-size: 16px;
+    font-weight: 100;
+}
+
+.tip {
+    color: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+}

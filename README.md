@@ -1,2 +1,3 @@
-# an-simple-homepage
-interesting
+这是一个极简的自定义首页
+
+具体介绍后面补充，今天时间已经晚了
