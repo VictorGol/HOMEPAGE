@@ -20,6 +20,7 @@ body {
 /* 包裹input框的一层 */
 .wrap1{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -69,4 +70,17 @@ body {
     box-shadow: 5px 5px 15px #c5c5c5,
         -5px -5px 15px #ffffff;
     transition: .5s;
+}
+
+.tip{
+    padding: 10px;
+    color: rgba(255,255,255,0.5);
+}
+
+.tip div{
+    width: fit-content;
+}
+
+.tip div:hover{
+    cursor: pointer;
 }

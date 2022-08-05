@@ -1,14 +1,16 @@
-let wrap = document.getElementById('app')
-let wrap1 = document.getElementsByClassName('wrap1')[0]
-let box = document.getElementsByClassName('box')[0]
-let path = {
+const wrap = document.getElementById('app')
+const wrap1 = document.getElementsByClassName('wrap1')[0]
+const box = document.getElementsByClassName('box')[0]
+const tip = document.getElementsByClassName('tip')[0]
+
+const path = {
     'baidu': 'https://www.baidu.com/s?wd=',
     'bing': 'https://www.bing.com/search?q=',
     'google': 'https://www.google.com/search?q=',
     'fsou': 'https://fsoufsou.com/search?q=',
 }
 let engine = 'baidu'
-let isWrapHasClick = false
+let commonObj = {}
 
 const command = {
     '*': 'https://www.ip138.com/',

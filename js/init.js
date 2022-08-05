@@ -1,15 +1,15 @@
 initSetting()
 
-wrap.addEventListener('click',()=>{
+wrap.addEventListener('click', () => {
     box.focus()
 })
 
 wrap.onkeydown = (e) => {
     // console.log('e',e);
-    if(e.code === 'ControlLeft'){
+    if (e.code === 'ControlLeft') {
         changeCursorShow()
     }
-    if(e.code === 'ControlRight'){
+    if (e.code === 'ControlRight') {
         layoutChange()
     }
     if (!box.value) return
@@ -25,8 +25,13 @@ wrap.onkeydown = (e) => {
 }
 
 box.oninput = () => {
-    let text = box.value
-    if (text.match(/.*cl$/)) {
-        box.value = ''
+    if(!box.value){
+        tip.innerHTML = ''
+        return
     }
+    if (box.value.match(/.*cl$/)) {
+        box.value = ''
+        tip.innerHTML = ' '
+    }
+    box.value && baiduSuggestion(box.value)
 }

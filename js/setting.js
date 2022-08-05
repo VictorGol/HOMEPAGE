@@ -8,7 +8,7 @@ const matchObj = {
 // 输入文本带有_时，判断要设置的选项，跳转到对应方法
 function setting(text) {
     if (/^_.+ +.+/.test(box.value)) {
-        text = text.replace(/ +/g,' ')
+        text = text.replace(/ +/g, ' ')
         let arr = text.split(' ')
         matchObj[arr[0]](arr[1])
     } else {
@@ -22,7 +22,7 @@ function initSetting() {
     let obj = str ? JSON.parse(str) : {}
     wrap.style.background = obj.bg ? `url(${obj.bg}) 50% 50%/cover` : `url('image/bg.jpg') 50% 50%/cover`
     engine = obj.engine ? obj.engine : 'baidu'
-    if(obj.position == '2'){
+    if (obj.position == '2') {
         layoutChange()
     }
 }
@@ -110,4 +110,21 @@ function changeCursorShow() {
 function layoutChange() {
     box.classList.toggle('box-center')
     wrap1.classList.toggle('wrap11')
+}
+
+// 显示搜索建议
+function setTips(arr) {
+    if (tip.innerHTML == ' ') {
+        tip.innerHTML = ''
+        return
+    }
+    const tips = arr.join('</div><div>')
+    tip.innerHTML = '<div>' + tips + '</div>'
+    const el = tip.getElementsByTagName('div');
+    for (let i = 0, len = el.length; i < len; i++) {
+        el[i].addEventListener('click', (e) => {
+            box.value = e.target.innerHTML
+            baiduSuggestion(e.target.innerHTML)
+        })
+    }
 }
