@@ -1,4 +1,5 @@
 let wrap = document.getElementById('app')
+let wrap1 = document.getElementsByClassName('wrap1')[0]
 let box = document.getElementsByClassName('box')[0]
 let path = {
     'baidu': 'https://www.baidu.com/s?wd=',

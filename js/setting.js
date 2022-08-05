@@ -76,4 +76,5 @@ function changeCursorShow(){
 // 切换input框的布局
 function layoutChange(){
     box.classList.toggle('box-center')
+    wrap1.classList.toggle('wrap11')
 }
