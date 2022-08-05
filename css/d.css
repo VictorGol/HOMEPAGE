@@ -10,26 +10,24 @@ body {
 body {
     display: flex;
 }
-
+/* 外层设置 */
+.wrap {
+    flex: 1;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 100;
+}
+/* 包裹input框的一层 */
 .wrap1{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
+/* 切换input框时给wrap1加上这个样式 */
 .wrap11{
     height: 40%;
 }
-
-.wrap {
-    flex: 1;
-    padding: 16px;
-    letter-spacing: 2px;
-    font-size: 16px;
-    font-weight: 100;
-    position: relative;
-}
-
+/* input框 */
 .box {
     padding: 10px;
     color: #fff;
@@ -44,7 +42,7 @@ body {
     font-size: 16px;
     font-weight: lighter;
 }
-
+/* 切换input框时的样式 */
 .box-center {
     color: #000;
     border-radius: 2rem;
@@ -60,7 +58,7 @@ body {
         inset -20px -20px 60px #ffffff;
     transition: .5s;
 }
-
+/* 接触input框时 */
 .box-center:hover {
     width: 444px;
     max-width: 444px;
@@ -71,9 +69,4 @@ body {
     box-shadow: 5px 5px 15px #c5c5c5,
         -5px -5px 15px #ffffff;
     transition: .5s;
-}
-
-.tip {
-    color: rgba(255, 255, 255, 0.7);
-    padding: 10px;
 }

@@ -1,10 +1,14 @@
+// 设置选项对应的方法
 const matchObj = {
     '_bg': setBg,
-    '_engine': setEngine,
+    '_eng': setEngine,
+    '_pos': setPosition,
 }
 
+// 输入文本带有_时，判断要设置的选项，跳转到对应方法
 function setting(text) {
-    if (/^_.+ .+/.test(box.value)) {
+    if (/^_.+ +.+/.test(box.value)) {
+        text = text.replace(/ +/g,' ')
         let arr = text.split(' ')
         matchObj[arr[0]](arr[1])
     } else {
@@ -12,13 +16,16 @@ function setting(text) {
     }
 }
 
+// 初始化设置
 function initSetting() {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
-    wrap.style.background = obj.bg ? `url(${obj.bg}) 50% 50%/cover` : setBg()
+    wrap.style.background = obj.bg ? `url(${obj.bg}) 50% 50%/cover` : `url('image/bg.jpg') 50% 50%/cover`
     engine = obj.engine ? obj.engine : 'baidu'
+    obj.position == '2' ? layoutChange() : 1 + 1
 }
 
+// 设置背景图
 function setBg(param) {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
@@ -33,6 +40,7 @@ function setBg(param) {
     showTip('背景设置成功')
 }
 
+// 设置搜索引擎
 function setEngine(param) {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
@@ -53,6 +61,29 @@ function setEngine(param) {
     }
 }
 
+// 设置input框的位置
+function setPosition(param) {
+    let str = localStorage.getItem('customSetting')
+    let obj = str ? JSON.parse(str) : {}
+    if (!param) {
+        obj.position = '1'
+        localStorage.setItem('customSetting', JSON.stringify(obj))
+        return
+    }
+    if (obj.position == param) {
+        showTip('默认输入位置设置成功')
+        return
+    }
+    if (param != '1' && param != '2') {
+        showTip('设置无效，请正确输入1或2')
+        return
+    }
+    obj.position = param
+    localStorage.setItem('customSetting', JSON.stringify(obj))
+    layoutChange()
+    showTip('默认输入位置设置成功')
+}
+
 // 显示提示信息
 function showTip(param) {
     if (box.value) {
@@ -65,16 +96,16 @@ function showTip(param) {
 }
 
 // 切换鼠标光标的显示和隐藏
-function changeCursorShow(){
-    if(box.style.caretColor == 'transparent'){
+function changeCursorShow() {
+    if (box.style.caretColor == 'transparent') {
         box.style.caretColor = 'auto'
-    }else{
+    } else {
         box.style.caretColor = 'transparent';
     }
 }
 
 // 切换input框的布局
-function layoutChange(){
+function layoutChange() {
     box.classList.toggle('box-center')
     wrap1.classList.toggle('wrap11')
 }

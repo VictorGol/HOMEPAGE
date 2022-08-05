@@ -14,7 +14,7 @@ wrap.onkeydown = (e) => {
     }
     if (!box.value) return
     if (e.keyCode == 13) {
-        if (/^_.+/.test(box.value)) {
+        if (/^_.+.*/.test(box.value)) {
             setting(box.value)
             return
         }
