@@ -8,6 +8,7 @@ let path = {
     'fsou': 'https://fsoufsou.com/search?q=',
 }
 let engine = 'baidu'
+let isWrapHasClick = false
 
 const command = {
     '*': 'https://www.ip138.com/',

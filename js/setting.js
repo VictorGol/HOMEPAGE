@@ -22,7 +22,9 @@ function initSetting() {
     let obj = str ? JSON.parse(str) : {}
     wrap.style.background = obj.bg ? `url(${obj.bg}) 50% 50%/cover` : `url('image/bg.jpg') 50% 50%/cover`
     engine = obj.engine ? obj.engine : 'baidu'
-    obj.position == '2' ? layoutChange() : 1 + 1
+    if(obj.position == '2'){
+        layoutChange()
+    }
 }
 
 // 设置背景图
