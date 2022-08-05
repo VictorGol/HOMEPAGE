@@ -1,4 +1,13 @@
-// d文本
+let wrap = document.getElementById('app')
+let box = document.getElementsByClassName('box')[0]
+let path = {
+    'baidu': 'https://www.baidu.com/s?wd=',
+    'bing': 'https://www.bing.com/search?q=',
+    'google': 'https://www.google.com/search?q=',
+    'fsou': 'https://fsoufsou.com/search?q=',
+}
+let engine = 'baidu'
+
 const command = {
     '*': 'https://www.ip138.com/',
     'vue': 'https://vuejs.org/',
@@ -43,4 +52,7 @@ const command = {
     'weibo': 'https://weibo.com/login.php/',
     'yande': 'https://yande.re/post',
     'houdunren': 'https://doc.houdunren.com',
+    'fsou': 'https://fsoufsou.com/',
+    'ruoyi': 'http://www.ruoyi.vip',
+    'unsplash': 'https://unsplash.com',
 }
