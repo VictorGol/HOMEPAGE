@@ -10,25 +10,29 @@ body {
 body {
     display: flex;
 }
+
 /* 外层设置 */
 .wrap {
     flex: 1;
     padding: 16px;
     font-size: 16px;
     font-weight: 100;
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0, 0, 0, 0.2);
 }
+
 /* 包裹input框的一层 */
-.wrap1{
+.wrap1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
 /* 切换input框时给wrap1加上这个样式 */
-.wrap11{
+.wrap11 {
     margin-top: 10%;
 }
+
 /* input框 */
 .box {
     padding: 10px;
@@ -44,6 +48,7 @@ body {
     font-size: 16px;
     font-weight: lighter;
 }
+
 /* 切换input框时的样式 */
 .box-center {
     color: #000;
@@ -60,6 +65,7 @@ body {
         inset -20px -20px 60px #ffffff;
     transition: .5s;
 }
+
 /* 接触input框时 */
 .box-center:hover {
     width: 444px;
@@ -73,25 +79,52 @@ body {
     transition: .5s;
 }
 
-.wrap2{
+.wrap2 {
     display: flex;
     justify-content: center;
-}
-
-.tip{
-    width: 100%;
-    padding: 10px;
-    color: rgba(255,255,255,0.7);
-}
-
-.tip-change{
-    width: 366px;
-}
-
-.tip div{
     width: fit-content;
 }
 
-.tip div:hover{
+.tip {
+    width: 100%;
+    padding: 0px 10px;
+    color: rgba(255, 255, 255, 0.7);
+    position: relative;
+}
+
+.tip:hover {
     cursor: pointer;
+}
+
+/* .tip-change{
+    width: 366px;
+} */
+
+.tip-text {
+    padding: 0px 6px;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 8px;
+    transition: .1s;
+}
+
+.tip-text:hover {
+    color: rgb(63, 63, 63);
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+
+.tip-text-hover {
+    color: rgb(63, 63, 63);
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+
+.tip-border {
+    background-color: rgba(187, 187, 187, 0.7);
+    border-radius: 8px;
+    height: 24px;
+    position: absolute;
+    z-index: -1;
+    transition: .2s;
 }

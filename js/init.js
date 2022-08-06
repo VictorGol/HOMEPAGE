@@ -16,10 +16,18 @@ wrap.onkeydown = (e) => {
     if (e.keyCode == 13) {
         jump()
     }
+    if (e.key == "ArrowUp") {
+        box.blur()
+        box.focus()
+        switchSuggestion(0)
+    }
+    if (e.key == "ArrowDown") {
+        switchSuggestion(1)
+    }
 }
 
 box.oninput = () => {
-    if(!box.value){
+    if (!box.value) {
         tip.innerHTML = ''
         return
     }

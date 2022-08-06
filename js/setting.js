@@ -3,7 +3,7 @@ const matchObj = {
     '_bgl': setLocalBg,
     '_eng': setEngine,
     '_pos': setPosition,
-    '_trp':setBgTrp
+    '_trp': setBgTrp
 }
 
 // 输入文本带有_时，判断要设置的选项，跳转到对应方法
@@ -58,7 +58,7 @@ function setBg(param) {
 // 设置背景——选用本地图片
 function setLocalBg() {
     const bgls = document.getElementsByClassName('bgl')
-    if(bgls.length){
+    if (bgls.length) {
         wrap.removeChild(bgls[0])
         return
     }
@@ -69,7 +69,7 @@ function setLocalBg() {
 }
 
 // 设置背景透明度
-function setBgTrp(param){
+function setBgTrp(param) {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
     const num = parseFloat(param)
@@ -152,7 +152,7 @@ function changeCursorShow() {
 function layoutChange() {
     box.classList.toggle('box-center')
     wrap1.classList.toggle('wrap11')
-    tip.classList.toggle('tip-change')
+    // tip.classList.toggle('tip-change')
 }
 
 // 显示搜索建议
@@ -162,14 +162,30 @@ function showSuggestions(arr) {
         return
     }
     const tips = arr.join('</div><div>')
-    tip.innerHTML = '<div>' + tips + '</div>'
+    tip.innerHTML = '<span></span><div>' + tips + '</div>'
     const el = tip.getElementsByTagName('div');
+    const span = tip.getElementsByTagName('span')[0];
     for (let i = 0, len = el.length; i < len; i++) {
+        el[i].classList.add('tip-text')
         el[i].addEventListener('click', (e) => {
             box.value = e.target.innerHTML
             jump()
             baiduSuggestion(e.target.innerHTML)
         })
+        el[i].onmouseover = () => {
+            if (!span.classList.length) {
+                span.classList.add('tip-border')
+                span.style.width = tip.clientWidth + 'px'
+            }
+            const a = tip.getElementsByClassName('tip-text-hover')
+            for (let i = 0, len = a.length; i < len; i++) {
+                a[i].classList.remove('tip-text-hover')
+            }
+            span.style.top = 24 * i + 'px';
+        }
+    }
+    tip.onmouseleave = () => {
+        span.classList.length && span.classList.remove('tip-border')
     }
 }
 
@@ -192,12 +208,73 @@ function fileImport() {
     reader.readAsDataURL(blob)
 }
 
-function jump(){
+// 跳转页面
+function jump() {
+    // 回车时判断当前是否采取建议搜索
+    const el1 = tip.getElementsByClassName('tip-border')
+    const el2 = tip.getElementsByClassName('tip-text-hover')
+    const divs = tip.getElementsByTagName('div');
+    if(el1.length){
+        box.value = divs[el1[0].style.top.match(/(.+)px/)[1] / 24].innerHTML
+        window.open(`${path[engine]}${box.value}`)
+        baiduSuggestion(box.value)
+        return
+    }
+    if(el2.length){
+        box.value = el2[0].innerHTML
+        window.open(`${path[engine]}${box.value}`)
+        baiduSuggestion(box.value)
+        return
+    }
+    // 判断内容是否类似_xx ...
     if (/^_.+.*/.test(box.value)) {
         setting(box.value)
         return
     }
+    // 判断内容是否是合格网页链接
+    if (box.value.slice(0, 4) === 'http') {
+        const reg = /^(((ht|f)tps?):\/\/)?([^!@#$%^&*?.\s-]([^!@#$%^&*?.\s]{0,63}[^!@#$%^&*?.\s])?\.)+[a-z]{2,6}\/?/
+        if (reg.test(box.value)) {
+            window.open(box.value)
+            return
+        }
+    }
+    // 正常跳转
     let targetLink = ''
     targetLink = command[box.value] ? command[box.value] : `${path[engine]}${box.value}`
     window.open(targetLink);
+}
+
+/**
+ * 按下上、下键时切换建议
+ */
+function switchSuggestion(flag) {
+    const divs = tip.getElementsByTagName('div')
+    if (!divs.length || !divs[0].innerHTML) return
+    const span = tip.getElementsByTagName('span')[0]
+    const len = divs.length;
+    if (flag) {
+        if (!span.classList.length) {
+            span.classList.add('tip-border');
+            span.style.width = tip.clientWidth + 'px';
+            span.style.top = '0px';
+            divs[0].classList.add('tip-text-hover');
+            return
+        }
+        const index = parseInt(span.style.top.match(/(.+)px/)[1]) / 24
+        if (index !== (len - 1)) {
+            span.style.top = (index + 1) * 24 + 'px';
+            divs[index].classList.remove('tip-text-hover');
+            divs[index + 1].classList.add('tip-text-hover');
+        }
+    } else {
+        const index = parseInt(span.style.top.match(/(.+)px/)[1]) / 24
+        divs[index].classList.remove('tip-text-hover')
+        if (index == 0) {
+            span.classList.remove('tip-border')
+        } else {
+            span.style.top = (index - 1) * 24 + 'px';
+            divs[index - 1].classList.add('tip-text-hover')
+        }
+    }
 }
