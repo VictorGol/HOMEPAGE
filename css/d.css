@@ -16,7 +16,7 @@ body {
     padding: 16px;
     font-size: 16px;
     font-weight: 100;
-    background-color: #c5c5c5;
+    background-color: rgba(0,0,0,0.2);
 }
 /* 包裹input框的一层 */
 .wrap1{
@@ -27,7 +27,7 @@ body {
 }
 /* 切换input框时给wrap1加上这个样式 */
 .wrap11{
-    height: 40%;
+    margin-top: 10%;
 }
 /* input框 */
 .box {
@@ -73,9 +73,19 @@ body {
     transition: .5s;
 }
 
+.wrap2{
+    display: flex;
+    justify-content: center;
+}
+
 .tip{
+    width: 100%;
     padding: 10px;
     color: rgba(255,255,255,0.7);
+}
+
+.tip-change{
+    width: 366px;
 }
 
 .tip div{

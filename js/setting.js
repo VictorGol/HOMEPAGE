@@ -3,6 +3,7 @@ const matchObj = {
     '_bgl': setLocalBg,
     '_eng': setEngine,
     '_pos': setPosition,
+    '_trp':setBgTrp
 }
 
 // 输入文本带有_时，判断要设置的选项，跳转到对应方法
@@ -20,14 +21,21 @@ function setting(text) {
 function initSetting() {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
+    const body = document.getElementsByTagName('body')[0]
     if (!obj.bg || (obj.bg.slice(0, 4) !== 'http' && obj.bg.slice(0, 22) !== 'data:image/jpeg;base64')) {
-        wrap.style.background = `url('image/bg.jpg') 50% 50%/cover`
+        body.style.background = `url('image/bg.jpg') 50% 50%/cover`
     } else {
-        wrap.style.background = `url(${obj.bg}) 50% 50%/cover`
+        body.style.background = `url(${obj.bg}) 50% 50%/cover`
     }
-    engine = obj.engine ? obj.engine : 'baidu'
+    engine = obj.engine ? path[obj.engine] ? obj.engine : 'baidu' : 'baidu'
     if (obj.position == '2') {
         layoutChange()
+    }
+    const num = parseFloat(obj.trp)
+    if (num.toString() === 'NaN' || num > 1 || num < 0) {
+        wrap.style.backgroundColor = 'rgba(0,0,0,0)'
+    } else {
+        wrap.style.backgroundColor = `rgba(0,0,0,${num})`
     }
 }
 
@@ -35,22 +43,40 @@ function initSetting() {
 function setBg(param) {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
+    const body = document.getElementsByTagName('body')[0]
     if (!param || (param.slice(0, 4) !== 'http' && param.slice(0, 22) !== 'data:image/jpeg;base64')) {
-        wrap.style.background = `url('image/bg.jpg') 50% 50%/cover`
+        body.style.background = `url('image/bg.jpg') 50% 50%/cover`
         obj.bg = ''
     } else {
-        wrap.style.background = `url(${param}) 50% 50%/cover`
+        body.style.background = `url(${param}) 50% 50%/cover`
         obj.bg = param
     }
     localStorage.setItem('customSetting', JSON.stringify(obj))
     showTip('背景设置成功')
 }
 
+// 设置背景——选用本地图片
 function setLocalBg() {
     let el = document.createElement('div');
     el.classList.add('bgl')
     el.innerHTML = `<input type="file" name="img" id="file" onchange="fileImport()"></input>`
     wrap.appendChild(el)
+}
+
+// 设置背景透明度
+function setBgTrp(param){
+    let str = localStorage.getItem('customSetting')
+    let obj = str ? JSON.parse(str) : {}
+    const num = parseFloat(param)
+    if (num.toString() === 'NaN' || num > 1 || num < 0) {
+        wrap.style.backgroundColor = 'rgba(0,0,0,0)'
+        obj.trp = ''
+    } else {
+        wrap.style.backgroundColor = `rgba(0,0,0,${param})`
+        obj.trp = param
+    }
+    localStorage.setItem('customSetting', JSON.stringify(obj))
+    showTip('背景透明度设置成功')
 }
 
 // 设置搜索引擎
@@ -121,6 +147,7 @@ function changeCursorShow() {
 function layoutChange() {
     box.classList.toggle('box-center')
     wrap1.classList.toggle('wrap11')
+    tip.classList.toggle('tip-change')
 }
 
 // 显示搜索建议
