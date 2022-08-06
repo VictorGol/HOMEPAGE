@@ -33,5 +33,5 @@ box.oninput = () => {
         box.value = ''
         tip.innerHTML = ' '
     }
-    box.value && baiduSuggestion(box.value)
+    box.value && !/^_/.test(box.value) && baiduSuggestion(box.value)
 }

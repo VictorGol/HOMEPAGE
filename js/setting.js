@@ -1,6 +1,6 @@
-// 设置选项对应的方法
 const matchObj = {
     '_bg': setBg,
+    '_bgl': setLocalBg,
     '_eng': setEngine,
     '_pos': setPosition,
 }
@@ -18,6 +18,7 @@ function setting(text) {
 
 // 初始化设置
 function initSetting() {
+    // D:/dhr/z-intersting/me/wall/wallhaven-z8klgo.jpg
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
     wrap.style.background = obj.bg ? `url(${obj.bg}) 50% 50%/cover` : `url('image/bg.jpg') 50% 50%/cover`
@@ -40,6 +41,13 @@ function setBg(param) {
     }
     localStorage.setItem('customSetting', JSON.stringify(obj))
     showTip('背景设置成功')
+}
+
+function setLocalBg(){
+    let el = document.createElement('div');
+    el.classList.add('bgl')
+    el.innerHTML = `<input type="file" name="img" id="file" onchange="fileImport()"></input>`
+    wrap.appendChild(el)
 }
 
 // 设置搜索引擎
@@ -88,13 +96,13 @@ function setPosition(param) {
 
 // 显示提示信息
 function showTip(param) {
-    if (box.value) {
+    // if (box.value) {
         box.value = param
         const timeout = setTimeout(() => {
             box.value = ''
             clearTimeout(timeout)
         }, 1200);
-    }
+    // }
 }
 
 // 切换鼠标光标的显示和隐藏
@@ -127,4 +135,23 @@ function setTips(arr) {
             baiduSuggestion(e.target.innerHTML)
         })
     }
+}
+
+// img2base64
+function fileImport() {
+    let file = document.getElementById('file').files[0];
+    // 图片大小限制2M
+    if(file.size > 2097152){
+        showTip('请上传2M以内的图片')
+        return
+    }
+    const blob = new Blob([file], { type: file.type || 'application/*' })
+    // const blobUrl = window.URL.createObjectURL(blob)
+    let reader = new FileReader()
+    reader.onload = () => {
+        setBg(reader.result)
+        let bgl = document.getElementsByClassName('bgl')[0];
+        wrap.removeChild(bgl)
+    }
+    reader.readAsDataURL(blob)
 }
