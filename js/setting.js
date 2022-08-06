@@ -156,7 +156,7 @@ function layoutChange() {
 }
 
 // 显示搜索建议
-function setTips(arr) {
+function showSuggestions(arr) {
     if (tip.innerHTML == ' ') {
         tip.innerHTML = ''
         return
@@ -167,6 +167,7 @@ function setTips(arr) {
     for (let i = 0, len = el.length; i < len; i++) {
         el[i].addEventListener('click', (e) => {
             box.value = e.target.innerHTML
+            jump()
             baiduSuggestion(e.target.innerHTML)
         })
     }
@@ -189,4 +190,14 @@ function fileImport() {
         wrap.removeChild(bgl)
     }
     reader.readAsDataURL(blob)
+}
+
+function jump(){
+    if (/^_.+.*/.test(box.value)) {
+        setting(box.value)
+        return
+    }
+    let targetLink = ''
+    targetLink = command[box.value] ? command[box.value] : `${path[engine]}${box.value}`
+    window.open(targetLink);
 }

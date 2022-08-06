@@ -4,7 +4,7 @@ Object.defineProperty(commonObj, 'suggestions', {
     },
     set(val) {
         suggestions = val
-        setTips(val)
+        showSuggestions(val)
     }
 })
 
