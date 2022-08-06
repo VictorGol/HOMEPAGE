@@ -6,7 +6,9 @@ const matchObj = {
     '_trp': setBgTrp
 }
 
-// 输入文本带有_时，判断要设置的选项，跳转到对应方法
+/**
+ * 输入文本带有_时，判断要设置的选项，跳转到对应方法
+ */
 function setting(text) {
     if (/^_.+ +.+/.test(box.value)) {
         text = text.replace(/ +/g, ' ')
@@ -17,7 +19,9 @@ function setting(text) {
     }
 }
 
-// 初始化设置
+/**
+ * 初始化设置
+ */
 function initSetting() {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
@@ -39,7 +43,10 @@ function initSetting() {
     }
 }
 
-// 设置背景图
+/**
+ * 设置背景图，格式_bg 图片链接
+ * 只有_bg代表设置默认图片
+ */
 function setBg(param) {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
@@ -55,7 +62,10 @@ function setBg(param) {
     showTip('背景设置成功')
 }
 
-// 设置背景——选用本地图片
+/**
+ * 设置背景——选用本地图片，格式_bgl
+ * l时local的意思
+ */
 function setLocalBg() {
     const bgls = document.getElementsByClassName('bgl')
     if (bgls.length) {
@@ -68,7 +78,10 @@ function setLocalBg() {
     wrap.appendChild(el)
 }
 
-// 设置背景透明度
+/**
+ * 设置背景透明度，格式_trp xx
+ * 取值0-1，不写默认为0
+ */
 function setBgTrp(param) {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
@@ -84,7 +97,10 @@ function setBgTrp(param) {
     showTip('背景透明度设置成功')
 }
 
-// 设置搜索引擎
+/**
+ * 设置搜索引擎，格式_eng xxx
+ * 设置的参数需要与已设置的对应，不然会设置失败
+ */
 function setEngine(param) {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
@@ -105,7 +121,10 @@ function setEngine(param) {
     }
 }
 
-// 设置input框的位置
+/**
+ * 设置input框的位置，格式_pos xx
+ * 取值1或2
+ */
 function setPosition(param) {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
@@ -128,18 +147,22 @@ function setPosition(param) {
     showTip('默认输入位置设置成功')
 }
 
-// 显示提示信息
+/**
+ * 显示提示信息
+ * 参数就是提示的信息
+ */
 function showTip(param) {
-    // if (box.value) {
     box.value = param
     const timeout = setTimeout(() => {
         box.value = ''
         clearTimeout(timeout)
     }, 1200);
-    // }
 }
 
-// 切换鼠标光标的显示和隐藏
+/**
+ * 切换鼠标光标的显示和隐藏
+ * 原理是使光标变透明
+ */
 function changeCursorShow() {
     if (box.style.caretColor == 'transparent') {
         box.style.caretColor = 'auto'
@@ -223,13 +246,13 @@ function jump() {
     const el1 = tip.getElementsByClassName('tip-border')
     const el2 = tip.getElementsByClassName('tip-text-hover')
     const divs = tip.getElementsByTagName('div');
-    if(el1.length){
+    if (el1.length) {
         box.value = divs[el1[0].style.top.match(/(.+)px/)[1] / 24].innerHTML
         window.open(`${path[engine]}${box.value}`)
         baiduSuggestion(box.value)
         return
     }
-    if(el2.length){
+    if (el2.length) {
         box.value = el2[0].innerHTML
         window.open(`${path[engine]}${box.value}`)
         baiduSuggestion(box.value)
