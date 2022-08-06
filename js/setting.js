@@ -148,14 +148,19 @@ function changeCursorShow() {
     }
 }
 
-// 切换input框的布局
+/**
+ * 切换input框的布局
+ */
 function layoutChange() {
     box.classList.toggle('box-center')
     wrap1.classList.toggle('wrap11')
-    // tip.classList.toggle('tip-change')
+    wrap2.classList.toggle('wrap22')
+    tip.classList.toggle('tip-change')
 }
 
-// 显示搜索建议
+/**
+ * 显示搜索建议
+ */
 function showSuggestions(arr) {
     if (tip.innerHTML == ' ') {
         tip.innerHTML = ''
@@ -189,7 +194,9 @@ function showSuggestions(arr) {
     }
 }
 
-// img2base64
+/**
+ * 图片转base64
+ */
 function fileImport() {
     let file = document.getElementById('file').files[0];
     // 图片大小限制2M
@@ -208,7 +215,9 @@ function fileImport() {
     reader.readAsDataURL(blob)
 }
 
-// 跳转页面
+/**
+ * 跳转页面
+*/
 function jump() {
     // 回车时判断当前是否采取建议搜索
     const el1 = tip.getElementsByClassName('tip-border')

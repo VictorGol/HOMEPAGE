@@ -1,5 +1,6 @@
 const wrap = document.getElementById('app')
 const wrap1 = document.getElementsByClassName('wrap1')[0]
+const wrap2 = document.getElementsByClassName('wrap2')[0]
 const box = document.getElementsByClassName('box')[0]
 const tip = document.getElementsByClassName('tip')[0]
 

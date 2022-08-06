@@ -85,6 +85,10 @@ body {
     width: fit-content;
 }
 
+.wrap22{
+    width: 100%;
+}
+
 .tip {
     width: 100%;
     padding: 0px 10px;
@@ -96,9 +100,9 @@ body {
     cursor: pointer;
 }
 
-/* .tip-change{
+.tip-change{
     width: 366px;
-} */
+}
 
 .tip-text {
     padding: 0px 6px;
