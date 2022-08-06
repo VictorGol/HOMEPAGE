@@ -16,6 +16,7 @@ body {
     padding: 16px;
     font-size: 16px;
     font-weight: 100;
+    background-color: #c5c5c5;
 }
 /* 包裹input框的一层 */
 .wrap1{

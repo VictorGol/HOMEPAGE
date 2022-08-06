@@ -18,10 +18,13 @@ function setting(text) {
 
 // 初始化设置
 function initSetting() {
-    // D:/dhr/z-intersting/me/wall/wallhaven-z8klgo.jpg
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
-    wrap.style.background = obj.bg ? `url(${obj.bg}) 50% 50%/cover` : `url('image/bg.jpg') 50% 50%/cover`
+    if (!obj.bg || (obj.bg.slice(0, 4) !== 'http' && obj.bg.slice(0, 22) !== 'data:image/jpeg;base64')) {
+        wrap.style.background = `url('image/bg.jpg') 50% 50%/cover`
+    } else {
+        wrap.style.background = `url(${obj.bg}) 50% 50%/cover`
+    }
     engine = obj.engine ? obj.engine : 'baidu'
     if (obj.position == '2') {
         layoutChange()
@@ -32,7 +35,7 @@ function initSetting() {
 function setBg(param) {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
-    if (!param) {
+    if (!param || (param.slice(0, 4) !== 'http' && param.slice(0, 22) !== 'data:image/jpeg;base64')) {
         wrap.style.background = `url('image/bg.jpg') 50% 50%/cover`
         obj.bg = ''
     } else {
@@ -43,7 +46,7 @@ function setBg(param) {
     showTip('背景设置成功')
 }
 
-function setLocalBg(){
+function setLocalBg() {
     let el = document.createElement('div');
     el.classList.add('bgl')
     el.innerHTML = `<input type="file" name="img" id="file" onchange="fileImport()"></input>`
@@ -97,11 +100,11 @@ function setPosition(param) {
 // 显示提示信息
 function showTip(param) {
     // if (box.value) {
-        box.value = param
-        const timeout = setTimeout(() => {
-            box.value = ''
-            clearTimeout(timeout)
-        }, 1200);
+    box.value = param
+    const timeout = setTimeout(() => {
+        box.value = ''
+        clearTimeout(timeout)
+    }, 1200);
     // }
 }
 
@@ -141,7 +144,7 @@ function setTips(arr) {
 function fileImport() {
     let file = document.getElementById('file').files[0];
     // 图片大小限制2M
-    if(file.size > 2097152){
+    if (file.size > 2097152) {
         showTip('请上传2M以内的图片')
         return
     }
