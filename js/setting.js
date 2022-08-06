@@ -57,6 +57,11 @@ function setBg(param) {
 
 // 设置背景——选用本地图片
 function setLocalBg() {
+    const bgls = document.getElementsByClassName('bgl')
+    if(bgls.length){
+        wrap.removeChild(bgls[0])
+        return
+    }
     let el = document.createElement('div');
     el.classList.add('bgl')
     el.innerHTML = `<input type="file" name="img" id="file" onchange="fileImport()"></input>`
