@@ -1,19 +1,28 @@
-const wrap = document.getElementById('app')
-const wrap1 = document.getElementsByClassName('wrap1')[0]
-const wrap2 = document.getElementsByClassName('wrap2')[0]
-const box = document.getElementsByClassName('box')[0]
-const tip = document.getElementsByClassName('tip')[0]
+/** wrap元素 */
+export const wrap = document.getElementById('app')
 
-const path = {
+/** wrap1元素 */
+export const wrap1 = document.getElementsByClassName('wrap1')[0]
+
+/** wrap2元素 */
+export const wrap2 = document.getElementsByClassName('wrap2')[0]
+
+/** box元素 */
+export const box = document.getElementsByClassName('box')[0]
+
+/** tip元素 */
+export const tip = document.getElementsByClassName('tip')[0]
+
+/** 引擎配置网页搜索路径 */
+export const path = {
     'baidu': 'https://www.baidu.com/s?wd=',
     'bing': 'https://www.bing.com/search?q=',
     'google': 'https://www.google.com/search?q=',
     'fsou': 'https://fsoufsou.com/search?q=',
 }
-let engine = 'baidu'
-let commonObj = {}
 
-const command = {
+/** 自定义命令 */
+export const command = {
     '*': 'https://www.ip138.com/',
     'apipost': 'https://console.apipost.cn/',
     'baidu': 'https://www.baidu.com/',

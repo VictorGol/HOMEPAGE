@@ -1,7 +1,12 @@
+import { box, wrap, tip } from './const.js'
+import { baiduSuggestion } from './request.js'
+import { initSetting, switchSuggestion, jump, changeCursorShow, layoutChange } from './setting.js'
+
 initSetting()
 
 wrap.addEventListener('click', () => {
-    box.focus()
+    box.focus();
+    box.style.caretColor = 'auto'
 })
 
 wrap.onkeydown = (e) => {
@@ -35,5 +40,5 @@ box.oninput = () => {
         box.value = ''
         tip.innerHTML = ' '
     }
-    box.value && !/^_/.test(box.value) && baiduSuggestion(box.value)
+    box.value && !/^ *_.*/.test(box.value) && baiduSuggestion(box.value)
 }

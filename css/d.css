@@ -92,6 +92,7 @@ body {
 .tip {
     width: 100%;
     padding: 0px 10px;
+    margin-top: 6px;
     color: rgba(255, 255, 255, 0.7);
     position: relative;
 }

@@ -1,15 +1,54 @@
+import { box, wrap, wrap1, wrap2, tip, path, command } from './const.js'
+import { baiduSuggestion } from './request.js'
+
+/** 选择状态，当按上下键进行选择搜索建议时 */
+let selectStatus = false
+
+/** 
+ * 设置项与其对应的函数
+ */
 const matchObj = {
     '_bg': setBg,
     '_bgl': setLocalBg,
     '_eng': setEngine,
     '_pos': setPosition,
-    '_trp': setBgTrp
+    '_trp': setBgTrp,
+    '_set': setAll
+}
+
+/**
+ * 弹窗设置所有选项
+ */
+export function setAll() {
+    box.blur()
+    const div = document.createElement('div');
+    const style = {
+        position: 'fixed',
+        top: '0',
+        right: '0',
+        bottom: '0',
+        left: '0',
+        background: 'rgba(0, 0, 0, 0.5)',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
+    Object.assign(div.style, style)
+    let popupStyle = "height:200px;\
+                    width:200px;\
+                    background:#fff;\
+                    border-radius:8px;"
+    div.innerHTML = `<div style="${popupStyle}"></div>`
+    const body = document.getElementsByTagName('body')[0];
+    body.appendChild(div)
 }
 
 /**
  * 输入文本带有_时，判断要设置的选项，跳转到对应方法
  */
-function setting(text) {
+export function setting(text) {
+    text = text.trim()
+    tip.innerHTML = ''
     if (/^_.+ +.+/.test(box.value)) {
         text = text.replace(/ +/g, ' ')
         let arr = text.split(' ')
@@ -22,7 +61,7 @@ function setting(text) {
 /**
  * 初始化设置
  */
-function initSetting() {
+export function initSetting() {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
     const body = document.getElementsByTagName('body')[0]
@@ -47,7 +86,7 @@ function initSetting() {
  * 设置背景图，格式_bg 图片链接
  * 只有_bg代表设置默认图片
  */
-function setBg(param) {
+export function setBg(param) {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
     const body = document.getElementsByTagName('body')[0]
@@ -66,7 +105,7 @@ function setBg(param) {
  * 设置背景——选用本地图片，格式_bgl
  * l时local的意思
  */
-function setLocalBg() {
+export function setLocalBg() {
     const bgls = document.getElementsByClassName('bgl')
     if (bgls.length) {
         wrap.removeChild(bgls[0])
@@ -82,7 +121,7 @@ function setLocalBg() {
  * 设置背景透明度，格式_trp xx
  * 取值0-1，不写默认为0
  */
-function setBgTrp(param) {
+export function setBgTrp(param) {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
     const num = parseFloat(param)
@@ -101,7 +140,7 @@ function setBgTrp(param) {
  * 设置搜索引擎，格式_eng xxx
  * 设置的参数需要与已设置的对应，不然会设置失败
  */
-function setEngine(param) {
+export function setEngine(param) {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
     if (param) {
@@ -125,7 +164,7 @@ function setEngine(param) {
  * 设置input框的位置，格式_pos xx
  * 取值1或2
  */
-function setPosition(param) {
+export function setPosition(param) {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
     if (!param) {
@@ -151,7 +190,7 @@ function setPosition(param) {
  * 显示提示信息
  * 参数就是提示的信息
  */
-function showTip(param) {
+export function showTip(param) {
     box.value = param
     const timeout = setTimeout(() => {
         box.value = ''
@@ -163,7 +202,7 @@ function showTip(param) {
  * 切换鼠标光标的显示和隐藏
  * 原理是使光标变透明
  */
-function changeCursorShow() {
+export function changeCursorShow() {
     if (box.style.caretColor == 'transparent') {
         box.style.caretColor = 'auto'
     } else {
@@ -174,7 +213,7 @@ function changeCursorShow() {
 /**
  * 切换input框的布局
  */
-function layoutChange() {
+export function layoutChange() {
     box.classList.toggle('box-center')
     wrap1.classList.toggle('wrap11')
     wrap2.classList.toggle('wrap22')
@@ -184,7 +223,7 @@ function layoutChange() {
 /**
  * 显示搜索建议
  */
-function showSuggestions(arr) {
+export function showSuggestions(arr) {
     if (tip.innerHTML == ' ') {
         tip.innerHTML = ''
         return
@@ -201,6 +240,7 @@ function showSuggestions(arr) {
             baiduSuggestion(e.target.innerHTML)
         })
         el[i].onmouseover = () => {
+            selectStatus = false
             if (!span.classList.length) {
                 span.classList.add('tip-border')
                 span.style.width = tip.clientWidth + 'px'
@@ -213,6 +253,7 @@ function showSuggestions(arr) {
         }
     }
     tip.onmouseleave = () => {
+        selectStatus = false
         span.classList.length && span.classList.remove('tip-border')
     }
 }
@@ -220,7 +261,7 @@ function showSuggestions(arr) {
 /**
  * 图片转base64
  */
-function fileImport() {
+export function fileImport() {
     let file = document.getElementById('file').files[0];
     // 图片大小限制2M
     if (file.size > 2097152) {
@@ -241,25 +282,19 @@ function fileImport() {
 /**
  * 跳转页面
 */
-function jump() {
+export function jump() {
+    let targetLink = ''
     // 回车时判断当前是否采取建议搜索
-    const el1 = tip.getElementsByClassName('tip-border')
-    const el2 = tip.getElementsByClassName('tip-text-hover')
-    const divs = tip.getElementsByTagName('div');
-    if (el1.length) {
-        box.value = divs[el1[0].style.top.match(/(.+)px/)[1] / 24].innerHTML
-        window.open(`${path[engine]}${box.value}`)
-        baiduSuggestion(box.value)
-        return
-    }
-    if (el2.length) {
+    if (selectStatus) {
+        const el2 = tip.getElementsByClassName('tip-text-hover')
         box.value = el2[0].innerHTML
-        window.open(`${path[engine]}${box.value}`)
+        targetLink = command[box.value] ? command[box.value] : `${path[engine]}${box.value}`
+        window.open(targetLink)
         baiduSuggestion(box.value)
         return
     }
     // 判断内容是否类似_xx ...
-    if (/^_.+.*/.test(box.value)) {
+    if (/^ *_.+.*/.test(box.value)) {
         setting(box.value)
         return
     }
@@ -272,7 +307,7 @@ function jump() {
         }
     }
     // 正常跳转
-    let targetLink = ''
+    targetLink = ''
     targetLink = command[box.value] ? command[box.value] : `${path[engine]}${box.value}`
     window.open(targetLink);
 }
@@ -280,12 +315,13 @@ function jump() {
 /**
  * 按下上、下键时切换建议
  */
-function switchSuggestion(flag) {
+export function switchSuggestion(flag) {
     const divs = tip.getElementsByTagName('div')
     if (!divs.length || !divs[0].innerHTML) return
     const span = tip.getElementsByTagName('span')[0]
     const len = divs.length;
     if (flag) {
+        selectStatus = true
         if (!span.classList.length) {
             span.classList.add('tip-border');
             span.style.width = tip.clientWidth + 'px';
@@ -303,8 +339,10 @@ function switchSuggestion(flag) {
         const index = parseInt(span.style.top.match(/(.+)px/)[1]) / 24
         divs[index].classList.remove('tip-text-hover')
         if (index == 0) {
+            selectStatus = false
             span.classList.remove('tip-border')
         } else {
+            selectStatus = true
             span.style.top = (index - 1) * 24 + 'px';
             divs[index - 1].classList.add('tip-text-hover')
         }
