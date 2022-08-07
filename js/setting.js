@@ -1,5 +1,3 @@
-import { box, wrap, wrap1, wrap2, tip, path, command } from './const.js'
-import { baiduSuggestion } from './request.js'
 
 /** 选择状态，当按上下键进行选择搜索建议时 */
 let selectStatus = false
@@ -19,10 +17,11 @@ const matchObj = {
 /**
  * 弹窗设置所有选项
  */
-export function setAll() {
+function setAll() {
     box.blur()
-    const div = document.createElement('div');
-    const style = {
+    /** 弹窗外层div */
+    const div1 = document.createElement('div');
+    const style1 = {
         position: 'fixed',
         top: '0',
         right: '0',
@@ -33,20 +32,25 @@ export function setAll() {
         justifyContent: 'center',
         alignItems: 'center'
     }
-    Object.assign(div.style, style)
-    let popupStyle = "height:200px;\
-                    width:200px;\
-                    background:#fff;\
-                    border-radius:8px;"
-    div.innerHTML = `<div style="${popupStyle}"></div>`
+    Object.assign(div1.style, style1)
+    /** 弹窗嵌套第一层div */
+    const div2 = document.createElement('div')
+    const style2 = {
+        height: '200px',
+        width: '200px',
+        background: '#fff',
+        borderRadius: '8px',
+    }
+    Object.assign(div2.style, style2)
+    div1.appendChild(div2)
     const body = document.getElementsByTagName('body')[0];
-    body.appendChild(div)
+    body.appendChild(div1)
 }
 
 /**
  * 输入文本带有_时，判断要设置的选项，跳转到对应方法
  */
-export function setting(text) {
+function setting(text) {
     text = text.trim()
     tip.innerHTML = ''
     if (/^_.+ +.+/.test(box.value)) {
@@ -61,7 +65,7 @@ export function setting(text) {
 /**
  * 初始化设置
  */
-export function initSetting() {
+function initSetting() {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
     const body = document.getElementsByTagName('body')[0]
@@ -86,7 +90,7 @@ export function initSetting() {
  * 设置背景图，格式_bg 图片链接
  * 只有_bg代表设置默认图片
  */
-export function setBg(param) {
+function setBg(param) {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
     const body = document.getElementsByTagName('body')[0]
@@ -105,7 +109,7 @@ export function setBg(param) {
  * 设置背景——选用本地图片，格式_bgl
  * l时local的意思
  */
-export function setLocalBg() {
+function setLocalBg() {
     const bgls = document.getElementsByClassName('bgl')
     if (bgls.length) {
         wrap.removeChild(bgls[0])
@@ -121,7 +125,7 @@ export function setLocalBg() {
  * 设置背景透明度，格式_trp xx
  * 取值0-1，不写默认为0
  */
-export function setBgTrp(param) {
+function setBgTrp(param) {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
     const num = parseFloat(param)
@@ -140,7 +144,7 @@ export function setBgTrp(param) {
  * 设置搜索引擎，格式_eng xxx
  * 设置的参数需要与已设置的对应，不然会设置失败
  */
-export function setEngine(param) {
+function setEngine(param) {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
     if (param) {
@@ -164,7 +168,7 @@ export function setEngine(param) {
  * 设置input框的位置，格式_pos xx
  * 取值1或2
  */
-export function setPosition(param) {
+function setPosition(param) {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
     if (!param) {
@@ -190,7 +194,7 @@ export function setPosition(param) {
  * 显示提示信息
  * 参数就是提示的信息
  */
-export function showTip(param) {
+function showTip(param) {
     box.value = param
     const timeout = setTimeout(() => {
         box.value = ''
@@ -202,7 +206,7 @@ export function showTip(param) {
  * 切换鼠标光标的显示和隐藏
  * 原理是使光标变透明
  */
-export function changeCursorShow() {
+function changeCursorShow() {
     if (box.style.caretColor == 'transparent') {
         box.style.caretColor = 'auto'
     } else {
@@ -213,7 +217,7 @@ export function changeCursorShow() {
 /**
  * 切换input框的布局
  */
-export function layoutChange() {
+function layoutChange() {
     box.classList.toggle('box-center')
     wrap1.classList.toggle('wrap11')
     wrap2.classList.toggle('wrap22')
@@ -223,7 +227,7 @@ export function layoutChange() {
 /**
  * 显示搜索建议
  */
-export function showSuggestions(arr) {
+function showSuggestions(arr) {
     if (tip.innerHTML == ' ') {
         tip.innerHTML = ''
         return
@@ -261,7 +265,7 @@ export function showSuggestions(arr) {
 /**
  * 图片转base64
  */
-export function fileImport() {
+function fileImport() {
     let file = document.getElementById('file').files[0];
     // 图片大小限制2M
     if (file.size > 2097152) {
@@ -282,11 +286,12 @@ export function fileImport() {
 /**
  * 跳转页面
 */
-export function jump() {
+function jump() {
     let targetLink = ''
     // 回车时判断当前是否采取建议搜索
     if (selectStatus) {
         const el2 = tip.getElementsByClassName('tip-text-hover')
+        if(!el2.length)return
         box.value = el2[0].innerHTML
         targetLink = command[box.value] ? command[box.value] : `${path[engine]}${box.value}`
         window.open(targetLink)
@@ -315,7 +320,7 @@ export function jump() {
 /**
  * 按下上、下键时切换建议
  */
-export function switchSuggestion(flag) {
+function switchSuggestion(flag) {
     const divs = tip.getElementsByTagName('div')
     if (!divs.length || !divs[0].innerHTML) return
     const span = tip.getElementsByTagName('span')[0]

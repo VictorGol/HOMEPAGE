@@ -1,6 +1,3 @@
-import { box, wrap, tip } from './const.js'
-import { baiduSuggestion } from './request.js'
-import { initSetting, switchSuggestion, jump, changeCursorShow, layoutChange } from './setting.js'
 
 initSetting()
 

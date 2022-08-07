@@ -1,10 +1,8 @@
-import { box } from './const.js'
-import { showSuggestions } from './setting.js'
 
 /**
  * 调用baidu搜索建议接口
  */
-export function baiduSuggestion(keyword) {
+function baiduSuggestion(keyword) {
     if (!box.value.trim()) return
     // const url = `http://suggestion.baidu.com/su?wd=${keyword}&cb=window.baidu.sug`;
     const url = `https://www.baidu.com/sugrec?&prod=pc&from=pc_web&wd=${keyword}&cb=window.baidu.sug`
