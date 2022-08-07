@@ -1,3 +1,6 @@
+/** body元素 */
+const body = document.getElementsByTagName('body')[0];
+
 /** wrap元素 */
 const wrap = document.getElementById('app')
 
@@ -13,8 +16,23 @@ const box = document.getElementsByClassName('box')[0]
 /** tip元素 */
 const tip = document.getElementsByClassName('tip')[0]
 
+/** popup元素 */
+const popup = document.getElementsByClassName('popup')[0]
+
+/** popup1元素 */
+const popup1 = document.getElementsByClassName('popup1')[0];
+
+/** 弹窗的提示 */
+const pTip = document.getElementsByClassName('p-tip')[0];
+
+/** 提示文字的颜色 */
+let tipColor = ['black', 'red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+
 /** 搜索引擎 */
 let engine = 'baidu';
+
+/** 选择状态，当按上下键进行选择搜索建议时 */
+let selectStatus = false
 
 /** 引擎配置网页搜索路径 */
 const path = {
@@ -32,6 +50,7 @@ const command = {
     'bili': 'https://www.bilibili.com/',
     'bilibili': 'https://www.bilibili.com/',
     'bing': 'https://cn.bing.com/',
+    'cai': 'https://www.runoob.com/',
     'csdn': 'https://www.csdn.net/',
     'cupfox': 'https://cupfox.app',
     'deepl': 'https://www.deepl.com/translator',
