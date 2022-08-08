@@ -62,6 +62,7 @@ const command = {
     'flickr': 'https://www.flickr.com/',
     'fsou': 'https://fsoufsou.com/',
     'genshin': 'https://ys.mihoyo.com/main/',
+    'git': 'https://git-scm.com',
     'github': 'https://github.com/',
     'google': 'https://www.google.com/',
     'googleimg': 'https://www.google.com.tw/imghp',

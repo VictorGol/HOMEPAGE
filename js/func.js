@@ -71,44 +71,38 @@ function fileImport() {
  * 跳转页面
 */
 function jump(val) {
-    console.log('ppp1', val);
     let targetLink = ''
     // 判断内容是否是合格网页链接
     if (val.slice(0, 4) === 'http') {
-        console.log('ppp2', val);
         const reg = /^(((ht|f)tps?):\/\/)?([^!@#$%^&*?.\s-]([^!@#$%^&*?.\s]{0,63}[^!@#$%^&*?.\s])?\.)+[a-z]{2,6}\/?/
         if (reg.test(val)) {
-            console.log('ppp3', val);
-            box.value = '';
-            tip.innerHTML = '';
-            window.open(val)
+            to(targetLink)
             return
         }
     }
     // 回车时判断当前是否采取建议搜索
     if (selectStatus) {
-        console.log('ppp4', val);
         const el2 = tip.getElementsByClassName('tip-text-hover')
         if (!el2.length) return
-        console.log('ppp5', val);
         val = el2[0].innerHTML;
         targetLink = command[val] ? command[val] : `${path[engine]}${val}`
-        box.value = '';
-        tip.innerHTML = '';
-        window.open(targetLink)
+        to(targetLink)
         return
     }
     // 以_开头的
     if (/^#.*/.test(val)) {
-        console.log('ppp6', val);
         setting(val)
         return
     }
-    console.log('ppp7', val);
     // 正常跳转
     targetLink = command[val] ? command[val] : `${path[engine]}${val}`
+    to(targetLink)
+}
+
+function to(targetLink){
     box.value = '';
     tip.innerHTML = '';
+    selectStatus = false;
     window.open(targetLink);
 }
 
