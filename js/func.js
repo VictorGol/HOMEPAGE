@@ -15,20 +15,19 @@ function showSuggestions(arr) {
     const tip = document.getElementsByClassName('tip')[0];
     tip.innerHTML = ''
     const tips = arr.join('</div><div>')
-    tip.innerHTML = '<span></span><div>' + tips + '</div>'
+    tip.innerHTML = '<span></span><div>' + tips + '</div>';
     const el = tip.getElementsByTagName('div');
     const span = tip.getElementsByTagName('span')[0];
     for (let i = 0, len = el.length; i < len; i++) {
         el[i].classList.add('tip-text')
         el[i].addEventListener('click', (e) => {
-            box.value = e.target.innerHTML
-            jump()
+            jump(e.target.innerHTML)
         })
         el[i].onmouseover = () => {
             selectStatus = false
             if (!span.classList.length) {
                 span.classList.add('tip-border')
-                span.style.width = tip.clientWidth + 'px'
+                span.style.width = tip.clientWidth - 20 + 'px'
             }
             // 鼠标滑过时，取消由上下键带来的样式
             const a = tip.getElementsByClassName('tip-text-hover')
@@ -44,6 +43,8 @@ function showSuggestions(arr) {
         selectStatus = false
         span.classList.length && span.classList.remove('tip-border')
     }
+    console.log('222',body.clientHeight*0.9, arr.length*24,);
+    if(body.clientHeight*0.9>=arr.length*24){}
 }
 
 /**
@@ -70,37 +71,37 @@ function fileImport() {
 /**
  * 跳转页面
 */
-function jump() {
+function jump(val) {
+    console.log('ppp',val);
     let targetLink = ''
     // 回车时判断当前是否采取建议搜索
     if (selectStatus) {
         const el2 = tip.getElementsByClassName('tip-text-hover')
         if (!el2.length) return
-        box.value = el2[0].innerHTML;
-        targetLink = command[box.value] ? command[box.value] : `${path[engine]}${box.value}`
+        val= el2[0].innerHTML;
+        targetLink = command[val] ? command[val] : `${path[engine]}${val}`
         box.value = '';
         tip.innerHTML = '';
         window.open(targetLink)
         return
     }
     // 以_开头的
-    if (/^#.*/.test(box.value)) {
-        setting(box.value)
+    if (/^#.*/.test(val)) {
+        setting(val)
         return
     }
     // 判断内容是否是合格网页链接
-    if (box.value.slice(0, 4) === 'http') {
+    if (val.slice(0, 4) === 'http') {
         const reg = /^(((ht|f)tps?):\/\/)?([^!@#$%^&*?.\s-]([^!@#$%^&*?.\s]{0,63}[^!@#$%^&*?.\s])?\.)+[a-z]{2,6}\/?/
-        if (reg.test(box.value)) {
-            targetLink = box.value;
+        if (reg.test(val)) {
             box.value = '';
             tip.innerHTML = '';
-            window.open(targetLink)
+            window.open(val)
             return
         }
     }
     // 正常跳转
-    targetLink = command[box.value] ? command[box.value] : `${path[engine]}${box.value}`
+    targetLink = command[val] ? command[val] : `${path[engine]}${val}`
     box.value = '';
     tip.innerHTML = '';
     window.open(targetLink);

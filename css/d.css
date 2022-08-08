@@ -83,17 +83,28 @@ body {
 .wrap2 {
     display: flex;
     justify-content: center;
-    width: fit-content;
+    width: 144px;
+    max-height: 90%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /* firefox */
+    scrollbar-width: none;
+    /* IE 10+ */
+    -ms-overflow-style: none;
 }
 
-.wrap22{
+.wrap2::-webkit-scrollbar {
+    display: none;
+}
+
+.wrap22 {
     width: 100%;
 }
 
 /* 提示框 */
 .tip {
     width: 100%;
-    padding: 0px 10px;
+    padding: 0 10px;
     margin-top: 6px;
     color: rgba(255, 255, 255, 0.7);
     position: relative;
@@ -105,7 +116,7 @@ body {
 }
 
 /* 提示框的在中间时 */
-.tip-change{
+.tip-change {
     width: 366px;
 }
 

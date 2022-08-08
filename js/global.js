@@ -66,6 +66,7 @@ const command = {
     'google': 'https://www.google.com/',
     'googleimg': 'https://www.google.com.tw/imghp',
     'houdunren': 'https://doc.houdunren.com',
+    'iconfinder': 'https://www.iconfinder.com/',
     'ip': 'https://www.ip138.com/',
     'konachan': 'https://konachan.net/post',
     'markdown': 'https://markdown.com.cn/',

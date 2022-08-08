@@ -13,7 +13,7 @@ wrap.onkeydown = (e) => {
     }
     if (!box.value) return
     if (e.keyCode == 13) {
-        jump()
+        jump(box.value)
     }
     if (e.key == "ArrowUp") {
         box.blur()
