@@ -1,28 +1,4 @@
 /**
- * 显示提示信息
- * 参数就是提示的信息
- */
- function showTip(param) {
-    box.value = param
-    const timeout = setTimeout(() => {
-        box.value = ''
-        clearTimeout(timeout)
-    }, 1200);
-}
-
-/**
- * 切换鼠标光标的显示和隐藏
- * 原理是使光标变透明
- */
-function changeCursorShow() {
-    if (box.style.caretColor == 'transparent') {
-        box.style.caretColor = 'auto'
-    } else {
-        box.style.caretColor = 'transparent';
-    }
-}
-
-/**
  * 切换input框的布局
  */
 function layoutChange() {
@@ -36,10 +12,8 @@ function layoutChange() {
  * 显示搜索建议
  */
 function showSuggestions(arr) {
-    if (tip.innerHTML == ' ') {
-        tip.innerHTML = ''
-        return
-    }
+    const tip = document.getElementsByClassName('tip')[0];
+    tip.innerHTML = ''
     const tips = arr.join('</div><div>')
     tip.innerHTML = '<span></span><div>' + tips + '</div>'
     const el = tip.getElementsByTagName('div');
@@ -49,7 +23,6 @@ function showSuggestions(arr) {
         el[i].addEventListener('click', (e) => {
             box.value = e.target.innerHTML
             jump()
-            baiduSuggestion(e.target.innerHTML)
         })
         el[i].onmouseover = () => {
             selectStatus = false
@@ -57,13 +30,16 @@ function showSuggestions(arr) {
                 span.classList.add('tip-border')
                 span.style.width = tip.clientWidth + 'px'
             }
+            // 鼠标滑过时，取消由上下键带来的样式
             const a = tip.getElementsByClassName('tip-text-hover')
             for (let i = 0, len = a.length; i < len; i++) {
                 a[i].classList.remove('tip-text-hover')
             }
+
             span.style.top = 24 * i + 'px';
         }
     }
+    // 鼠标离开提示框时去除它的子元素外壳
     tip.onmouseleave = () => {
         selectStatus = false
         span.classList.length && span.classList.remove('tip-border')
@@ -99,15 +75,14 @@ function jump() {
     // 回车时判断当前是否采取建议搜索
     if (selectStatus) {
         const el2 = tip.getElementsByClassName('tip-text-hover')
-        if(!el2.length)return
+        if (!el2.length) return
         box.value = el2[0].innerHTML
         targetLink = command[box.value] ? command[box.value] : `${path[engine]}${box.value}`
         window.open(targetLink)
-        baiduSuggestion(box.value)
         return
     }
-    // 判断内容是否类似_xx ...
-    if (/^ *_.*/.test(box.value)) {
+    // 以_开头的
+    if (/^#.*/.test(box.value)) {
         setting(box.value)
         return
     }
@@ -130,9 +105,10 @@ function jump() {
  */
 function switchSuggestion(flag) {
     const divs = tip.getElementsByTagName('div')
-    if (!divs.length || !divs[0].innerHTML) return
+    if (!divs.length) return
     const span = tip.getElementsByTagName('span')[0]
     const len = divs.length;
+    // 如果是下按钮
     if (flag) {
         selectStatus = true
         if (!span.classList.length) {
@@ -162,11 +138,19 @@ function switchSuggestion(flag) {
     }
 }
 
-function closePopup() {
-    popup1.classList.toggle('popup1-change');
-    const t = setTimeout(() => {
-        popup.classList.toggle('popup-change')
-        clearTimeout(t)
-    }, 500);
-    box.focus()
+/**
+ * 搜索指令
+ */
+function searchCommand(val) {
+    let arr = [];
+    for (let i = 0, len = commandKeys.length; i < len; i++) {
+        if (commandKeys[i].indexOf(val) !== -1) {
+            arr.push(commandKeys[i])
+        }
+    }
+    if (arr.length) {
+        showSuggestions(arr)
+    }else{
+        tip.innerHTML = ''
+    }
 }

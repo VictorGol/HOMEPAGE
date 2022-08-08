@@ -90,6 +90,7 @@ body {
     width: 100%;
 }
 
+/* 提示框 */
 .tip {
     width: 100%;
     padding: 0px 10px;
@@ -98,34 +99,41 @@ body {
     position: relative;
 }
 
+/* 提示框：hover */
 .tip:hover {
     cursor: pointer;
 }
 
+/* 提示框的在中间时 */
 .tip-change{
     width: 366px;
 }
 
+/* 提示框里的每一个元素 */
 .tip-text {
     padding: 0px 6px;
     height: 24px;
     line-height: 24px;
     border-radius: 8px;
     transition: .1s;
+    color: #fff;
 }
 
+/* 提示框每个元素的hover状态 */
 .tip-text:hover {
     color: rgb(63, 63, 63);
     letter-spacing: 1px;
     font-weight: 400;
 }
 
+/* 上下键选择时给提示框子元素用到的与上面的同样式 */
 .tip-text-hover {
     color: rgb(63, 63, 63);
     letter-spacing: 1px;
     font-weight: 400;
 }
 
+/* 提示框每一个元素的外壳 */
 .tip-border {
     background-color: rgba(187, 187, 187, 0.7);
     border-radius: 8px;

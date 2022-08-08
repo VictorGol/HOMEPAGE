@@ -3,35 +3,26 @@
  * 设置项与其对应的函数
  */
 const matchObj = {
-    '_': setAll,
-    '_bg': setBg,
-    '_bgl': setLocalBg,
-    '_eng': setEngine,
-    '_pos': setPosition,
-    '_trp': setBgTrp,
-}
-
-/**
- * 弹窗设置所有选项
- */
-function setAll() {
-    box.blur()
-    popup.classList.toggle('popup-change')
-    popup1.classList.toggle('popup1-change');
-    pTip.innerHTML = ''
+    '#': showTip,
+    '#bg': setBg,
+    '#bgl': setLocalBg,
+    '#eng': setEngine,
+    '#pos': setPosition,
+    '#trp': setBgTrp,
 }
 
 /**
  * 输入文本带有_时，判断要设置的选项，跳转到对应方法
  */
 function setting(text) {
-    text = text.trim()
     tip.innerHTML = ''
-    if (/^_.+ +.+/.test(box.value)) {
-        text = text.replace(/ +/g, ' ')
+    // 如果满足类似_bg xxx这种正常格式
+    if (/^#.+\s+.+/.test(box.value)) {
+        text = text.replace(/\s+/g, ' ')
         let arr = text.split(' ')
         matchObj[arr[0]](arr[1])
     } else {
+        // 非正常格式由_,_bg等
         matchObj[text]()
     }
 }
@@ -42,15 +33,19 @@ function setting(text) {
 function initSetting() {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
+    // 初始化背景
     if (!obj.bg || (obj.bg.slice(0, 4) !== 'http' && obj.bg.slice(0, 22) !== 'data:image/jpeg;base64')) {
         body.style.background = `url('image/bg.jpg') 50% 50%/cover`
     } else {
         body.style.background = `url(${obj.bg}) 50% 50%/cover`
     }
+    // 初始化引擎
     engine = obj.engine ? path[obj.engine] ? obj.engine : 'baidu' : 'baidu'
+    // 初始化搜索位置
     if (obj.position == '2') {
         layoutChange()
     }
+    // 初始化背景透明度
     const num = parseFloat(obj.trp)
     if (num.toString() === 'NaN' || num > 1 || num < 0) {
         wrap.style.backgroundColor = 'rgba(0,0,0,0)'
@@ -95,7 +90,7 @@ function setLocalBg() {
 
 /**
  * 设置背景透明度，格式_trp xx
- * 取值0-1，不写默认为0
+ * 取值0-1，不写或写错默认为0
  */
 function setBgTrp(param) {
     let str = localStorage.getItem('customSetting')

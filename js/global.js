@@ -77,6 +77,7 @@ const command = {
     'qqmusic': 'https://y.qq.com/',
     'ruoyi': 'http://www.ruoyi.vip',
     'twitter': 'https://twitter.com/',
+    'uniapp': 'https://uniapp.dcloud.net.cn',
     'unsplash': 'https://unsplash.com',
     'vue': 'https://vuejs.org/',
     'wallhaven': 'https://wallhaven.cc/',
@@ -87,9 +88,27 @@ const command = {
     'wyy': 'https://music.163.com/',
     'yande': 'https://yande.re/post',
     'youtube': 'https://www.youtube.com/',
+    'zhengze': 'https://www.runoob.com/jsref/jsref-obj-regexp.html',
     'zhihu': 'https://www.zhihu.com/',
     '菜鸟教程': 'https://www.runoob.com/',
     '微信公众号': 'https://mp.weixin.qq.com',
     '微信公众平台': 'https://mp.weixin.qq.com',
+    '域名备案查询': 'https://beian.miit.gov.cn/#/Integrated/index',
     '云效': 'https://account.aliyun.com/',
+    '正则': 'https://www.runoob.com/jsref/jsref-obj-regexp.html',
+}
+
+/** 指令的所有键 */
+const commandKeys = Object.keys(command);
+
+/**
+ * 显示提示信息
+ * 参数就是提示的信息
+ */
+function showTip(param) {
+    box.value = param ? param : '啥也没有哦';
+    const timeout = setTimeout(() => {
+        box.value = ''
+        clearTimeout(timeout)
+    }, 1000);
 }
