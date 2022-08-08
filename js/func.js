@@ -76,7 +76,7 @@ function jump(val) {
     if (val.slice(0, 4) === 'http') {
         const reg = /^(((ht|f)tps?):\/\/)?([^!@#$%^&*?.\s-]([^!@#$%^&*?.\s]{0,63}[^!@#$%^&*?.\s])?\.)+[a-z]{2,6}\/?/
         if (reg.test(val)) {
-            to(targetLink)
+            to(val)
             return
         }
     }
