@@ -44,7 +44,6 @@ const path = {
 
 /** 自定义命令 */
 const command = {
-    '*': 'https://www.ip138.com/',
     'apipost': 'https://console.apipost.cn/',
     'baidu': 'https://www.baidu.com/',
     'bili': 'https://www.bilibili.com/',

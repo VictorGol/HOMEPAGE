@@ -76,8 +76,10 @@ function jump() {
     if (selectStatus) {
         const el2 = tip.getElementsByClassName('tip-text-hover')
         if (!el2.length) return
-        box.value = el2[0].innerHTML
+        box.value = el2[0].innerHTML;
         targetLink = command[box.value] ? command[box.value] : `${path[engine]}${box.value}`
+        box.value = '';
+        tip.innerHTML = '';
         window.open(targetLink)
         return
     }
@@ -90,13 +92,17 @@ function jump() {
     if (box.value.slice(0, 4) === 'http') {
         const reg = /^(((ht|f)tps?):\/\/)?([^!@#$%^&*?.\s-]([^!@#$%^&*?.\s]{0,63}[^!@#$%^&*?.\s])?\.)+[a-z]{2,6}\/?/
         if (reg.test(box.value)) {
-            window.open(box.value)
+            targetLink = box.value;
+            box.value = '';
+            tip.innerHTML = '';
+            window.open(targetLink)
             return
         }
     }
     // 正常跳转
-    targetLink = ''
     targetLink = command[box.value] ? command[box.value] : `${path[engine]}${box.value}`
+    box.value = '';
+    tip.innerHTML = '';
     window.open(targetLink);
 }
 
@@ -142,7 +148,13 @@ function switchSuggestion(flag) {
  * 搜索指令
  */
 function searchCommand(val) {
+    if (!val) return
+    if (val === '*') {
+        showSuggestions(commandKeys);
+        return
+    }
     let arr = [];
+    val.slice(0, 1) === '*' ? val = val.slice(1) : 1 + 1;
     for (let i = 0, len = commandKeys.length; i < len; i++) {
         if (commandKeys[i].indexOf(val) !== -1) {
             arr.push(commandKeys[i])
@@ -150,7 +162,7 @@ function searchCommand(val) {
     }
     if (arr.length) {
         showSuggestions(arr)
-    }else{
+    } else {
         tip.innerHTML = ''
     }
 }
