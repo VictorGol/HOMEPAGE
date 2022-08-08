@@ -35,9 +35,10 @@ function initSetting() {
     let obj = str ? JSON.parse(str) : {}
     // 初始化背景
     if (!obj.bg || (obj.bg.slice(0, 4) !== 'http' && obj.bg.slice(0, 22) !== 'data:image/jpeg;base64')) {
-        body.style.background = `url('image/bg.jpg') 50% 50%/cover`
+        body.style.background = `url('image/bg.jpg') 50% 50%/cover`;
     } else {
-        body.style.background = `url(${obj.bg}) 50% 50%/cover`
+        body.style.background = `url(${obj.bg}) 50% 50%/cover`;
+        // body.style.backgroundColor = `#fff`;
     }
     // 初始化引擎
     engine = obj.engine ? path[obj.engine] ? obj.engine : 'baidu' : 'baidu'

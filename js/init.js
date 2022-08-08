@@ -3,7 +3,7 @@ initSetting()
 
 wrap.addEventListener('click', () => {
     box.focus();
-    box.style.caretColor = 'auto'
+    // box.style.caretColor = 'auto'
 })
 
 wrap.onkeydown = (e) => {
