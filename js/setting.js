@@ -38,7 +38,6 @@ function initSetting() {
         body.style.background = `url('image/bg.jpg') 50% 50%/cover`;
     } else {
         body.style.background = `url(${obj.bg}) 50% 50%/cover`;
-        // body.style.backgroundColor = `#fff`;
     }
     // 初始化引擎
     engine = obj.engine ? path[obj.engine] ? obj.engine : 'baidu' : 'baidu'
