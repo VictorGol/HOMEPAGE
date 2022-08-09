@@ -99,6 +99,9 @@ function jump(val) {
     to(targetLink)
 }
 
+/**
+ * 跳转到指定链接
+ */
 function to(targetLink){
     box.value = '';
     tip.innerHTML = '';
@@ -119,7 +122,7 @@ function switchSuggestion(flag) {
         selectStatus = true
         if (!span.classList.length) {
             span.classList.add('tip-border');
-            span.style.width = tip.clientWidth + 'px';
+            span.style.width = tip.clientWidth - 20 + 'px';
             span.style.top = '0px';
             divs[0].classList.add('tip-text-hover');
             return
