@@ -94,6 +94,7 @@ const command = {
     'zhengze': 'https://www.runoob.com/jsref/jsref-obj-regexp.html',
     'zhihu': 'https://www.zhihu.com/',
     '菜鸟教程': 'https://www.runoob.com/',
+    '若依': 'http://www.ruoyi.vip',
     '微信公众号': 'https://mp.weixin.qq.com',
     '微信公众平台': 'https://mp.weixin.qq.com',
     '域名备案查询': 'https://beian.miit.gov.cn/#/Integrated/index',

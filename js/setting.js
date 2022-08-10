@@ -8,7 +8,7 @@ const matchObj = {
     '#bgl': setLocalBg,
     '#eng': setEngine,
     '#pos': setPosition,
-    '#trp': setBgTrp,
+    '#trp': setBgTrp
 }
 
 /**
@@ -22,8 +22,8 @@ function setting(text) {
         let arr = text.split(' ')
         matchObj[arr[0]](arr[1])
     } else {
-        // 非正常格式由_,_bg等
-        matchObj[text]()
+        // 非正常格式有#,#bg等
+        matchObj[text] && matchObj[text]()
     }
 }
 
