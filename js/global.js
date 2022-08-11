@@ -46,7 +46,7 @@ const path = {
 const command = {
     'apipost': 'https://console.apipost.cn/',
     'baidu': 'https://www.baidu.com/',
-    'bili': 'https://www.bilibili.com/',
+    'bili': 'https://t.bilibili.com/',
     'bilibili': 'https://www.bilibili.com/',
     'bing': 'https://cn.bing.com/',
     'cai': 'https://www.runoob.com/',
