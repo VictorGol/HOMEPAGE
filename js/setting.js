@@ -13,11 +13,11 @@ const matchObj = {
 }
 
 /**
- * 输入文本带有_时，判断要设置的选项，跳转到对应方法
+ * 输入文本带有#时，判断要设置的选项，跳转到对应方法
  */
 function setting(text) {
     tip.innerHTML = ''
-    // 如果满足类似_bg xxx这种正常格式
+    // 如果满足类似#bg xxx这种正常格式
     if (/^#.+\s+.+/.test(box.value)) {
         text = text.replace(/\s+/g, ' ')
         let arr = text.split(' ')
@@ -56,8 +56,8 @@ function initSetting() {
 }
 
 /**
- * 设置背景图，格式_bg 图片链接
- * 只有_bg代表设置默认图片
+ * 设置背景图，格式#bg 图片链接
+ * 只有#bg代表设置默认图片
  */
 function setBg(param) {
     let str = localStorage.getItem('customSetting')
@@ -75,7 +75,7 @@ function setBg(param) {
 }
 
 /**
- * 设置背景——选用本地图片，格式_bgl
+ * 设置背景——选用本地图片，格式#bgl
  * l时local的意思
  */
 function setLocalBg() {
@@ -91,7 +91,7 @@ function setLocalBg() {
 }
 
 /**
- * 设置背景透明度，格式_trp xx
+ * 设置背景透明度，格式#trp xx
  * 取值0-1，不写或写错默认为0
  */
 function setBgTrp(param) {
@@ -110,7 +110,7 @@ function setBgTrp(param) {
 }
 
 /**
- * 设置搜索引擎，格式_eng xxx
+ * 设置搜索引擎，格式#eng xxx
  * 设置的参数需要与已设置的对应，不然会设置失败
  */
 function setEngine(param) {
@@ -134,7 +134,7 @@ function setEngine(param) {
 }
 
 /**
- * 设置input框的位置，格式_pos xx
+ * 设置input框的位置，格式#pos xx
  */
 function setPosition(param) {
     let str = localStorage.getItem('customSetting')

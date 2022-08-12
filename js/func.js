@@ -89,7 +89,7 @@ function jump(val) {
         to(targetLink)
         return
     }
-    // 以_开头的
+    // 以#开头的
     if (/^#.*/.test(val)) {
         setting(val)
         return
