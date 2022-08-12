@@ -8,7 +8,8 @@ const matchObj = {
     '#bgl': setLocalBg,
     '#eng': setEngine,
     '#pos': setPosition,
-    '#trp': setBgTrp
+    '#trp': setBgTrp,
+    '#pre': setPreImg
 }
 
 /**
@@ -66,6 +67,7 @@ function setBg(param) {
         obj.bg = ''
     } else {
         body.style.background = `url(${param}) 50% 50%/cover`
+        obj.pre = obj.bg ? obj.bg : ''
         obj.bg = param
     }
     localStorage.setItem('customSetting', JSON.stringify(obj))
@@ -154,4 +156,19 @@ function setPosition(param) {
     localStorage.setItem('customSetting', JSON.stringify(obj))
     layoutChange()
     showTip('默认输入位置设置成功')
+}
+
+/** 切换到上一张图片 */
+function setPreImg(val) {
+    if (val) return
+    let str = localStorage.getItem('customSetting')
+    let obj = str ? JSON.parse(str) : {}
+    if (obj.pre) {
+        body.style.background = `url(${obj.pre}) 50% 50%/cover`;
+        [obj.bg, obj.pre] = [obj.pre, obj.bg];
+        localStorage.setItem('customSetting', JSON.stringify(obj))
+        showTip('背景设置成功')
+    }else{
+        showTip('没有上一张图片哦')
+    }
 }
