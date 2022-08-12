@@ -38,12 +38,14 @@ let selectStatus = false
 const path = {
     'baidu': 'https://www.baidu.com/s?wd=',
     'bing': 'https://www.bing.com/search?q=',
+    'bingcn': 'https://cn.bing.com/search?q=',
     'google': 'https://www.google.com/search?q=',
     'fsou': 'https://fsoufsou.com/search?q=',
 }
 
 /** 自定义命令 */
 const command = {
+    'ahhhhfs': 'https://www.abskoop.com',
     'apipost': 'https://console.apipost.cn/',
     'baidu': 'https://www.baidu.com/',
     'bili': 'https://t.bilibili.com/',
@@ -67,9 +69,11 @@ const command = {
     'github': 'https://github.com/',
     'google': 'https://www.google.com/',
     'googleimg': 'https://www.google.com.tw/imghp',
+    'hackernews': 'https://news.ycombinator.com',
     'houdunren': 'https://doc.houdunren.com',
     'iconfinder': 'https://www.iconfinder.com/',
     'ip': 'https://www.ip138.com/',
+    'juejin': 'https://juejin.cn',
     'konachan': 'https://konachan.net/post',
     'markdown': 'https://markdown.com.cn/',
     'mdn': 'https://developer.mozilla.org/',
@@ -77,6 +81,7 @@ const command = {
     'pixiv': 'https://www.pixiv.net/',
     'qidian': 'https://www.qidian.com/',
     'qqmusic': 'https://y.qq.com/',
+    'ranyf': 'https://github.com/ruanyf/weekly',
     'ruoyi': 'http://www.ruoyi.vip',
     'twitter': 'https://twitter.com/',
     'uniapp': 'https://uniapp.dcloud.net.cn',
@@ -100,6 +105,14 @@ const command = {
     '域名备案查询': 'https://beian.miit.gov.cn/#/Integrated/index',
     '云效': 'https://devops.aliyun.com/',
     '正则': 'https://www.runoob.com/jsref/jsref-obj-regexp.html',
+    // 前端分享
+    'f-focus': 'https://frontendfoc.us/issues',
+    'f-javascript-weekly': 'https://javascriptweekly.com/issues',
+    'f-juejin': 'https://juejin.cn/frontend',
+    'f-nodejs-weekly': 'https://nodeweekly.com/issues',
+    'f-TNT': 'https://github.com/tnfe/TNT-Weekly',
+    'f-编程狂人': 'https://www.tuicool.com/mags',
+    'f-前端精读': 'https://github.com/ascoders/weekly',
 }
 
 /** 指令的所有键 */

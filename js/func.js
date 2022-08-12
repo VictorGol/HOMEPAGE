@@ -102,9 +102,7 @@ function jump(val) {
 /**
  * 跳转到指定链接
  */
-function to(targetLink){
-    box.value = '';
-    tip.innerHTML = '';
+function to(targetLink) {
     selectStatus = false;
     window.open(targetLink);
 }
