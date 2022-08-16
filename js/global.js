@@ -75,6 +75,8 @@ const command = {
     'ip': 'https://www.ip138.com/',
     'juejin': 'https://juejin.cn',
     'konachan': 'https://konachan.net/post',
+    'lodash': 'https://lodash.com',
+    'date-fns': 'https://date-fns.org',
     'markdown': 'https://markdown.com.cn/',
     'mdn': 'https://developer.mozilla.org/',
     'nga': 'https://bbs.nga.cn/',
