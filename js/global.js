@@ -91,6 +91,7 @@ const command = {
     'vitepress': 'https://vitepress.vuejs.org',
     'vue': 'https://vuejs.org/',
     'vuecn': 'https://cn.vuejs.org',
+    'vueuse': 'https://vueuse.org',
     'wallhaven': 'https://wallhaven.cc/',
     'wallhere': 'https://wallhere.com/',
     'webstore': 'https://chrome.google.com/webstore/category/extensions',
