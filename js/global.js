@@ -86,6 +86,7 @@ const command = {
     'twitter': 'https://twitter.com/',
     'uniapp': 'https://uniapp.dcloud.net.cn',
     'unsplash': 'https://unsplash.com',
+    'vitepress': 'https://vitepress.vuejs.org',
     'vue': 'https://vuejs.org/',
     'vuecn': 'https://cn.vuejs.org',
     'wallhaven': 'https://wallhaven.cc/',
