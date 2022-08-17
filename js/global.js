@@ -90,6 +90,7 @@ const command = {
     'uniapp': 'https://uniapp.dcloud.net.cn',
     'unsplash': 'https://unsplash.com',
     'vitepress': 'https://vitepress.vuejs.org',
+    'vmware教程': 'https://zhuanlan.zhihu.com/p/272541376',
     'vue': 'https://vuejs.org/',
     'vuecn': 'https://cn.vuejs.org',
     'vuerouter': 'https://router.vuejs.org/zh/',
