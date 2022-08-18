@@ -25,9 +25,6 @@ const popup1 = document.getElementsByClassName('popup1')[0];
 /** 弹窗的提示 */
 const pTip = document.getElementsByClassName('p-tip')[0];
 
-/** 提示文字的颜色 */
-let tipColor = ['black', 'red', 'orange', 'yellow', 'green', 'blue', 'purple'];
-
 /** 搜索引擎 */
 let engine = 'baidu';
 
@@ -57,12 +54,14 @@ const command = {
     'deepl': 'https://www.deepl.com/translator',
     'diduan': 'https://ddrk.me/',
     'douyin': 'https://www.douyin.com/',
+    'electron': 'https://www.electronjs.org/zh/docs/latest/tutorial/process-model',
     'elementplus': 'https://element-plus.gitee.io/',
     'elementui': 'https://element.eleme.cn/',
     'fanyi': 'https://translate.google.cn/',
     'fitacg': 'https://fitacg.com',
     'flickr': 'https://www.flickr.com/',
     'fsou': 'https://fsoufsou.com/',
+    'gamma': 'https://gamma.app/?ref=producthunt',
     'genshin': 'https://ys.mihoyo.com/main/',
     'git': 'https://git-scm.com',
     'gitee': 'https://gitee.com',
