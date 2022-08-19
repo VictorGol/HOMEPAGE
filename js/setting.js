@@ -62,7 +62,7 @@ function initSetting() {
 function setBg(param) {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
-    if (!param || (param.slice(0, 4) !== 'http' && param.slice(0, 22) !== 'data:image/jpeg;base64')) {
+    if (!param || (param.slice(0, 4) !== 'http' && param.slice(0, 5) !== 'data:')) {
         body.style.background = `url('image/bg.jpg') 50% 50%/cover`
         obj.bg = ''
     } else {

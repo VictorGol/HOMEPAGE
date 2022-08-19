@@ -52,7 +52,7 @@ const command = {
     'csdn': 'https://www.csdn.net/',
     'cupfox': 'https://cupfox.app',
     'deepl': 'https://www.deepl.com/translator',
-    'diduan': 'https://ddrk.me/',
+    'diduan': 'https://ddys.tv',
     'douyin': 'https://www.douyin.com/',
     'electron': 'https://www.electronjs.org/zh/docs/latest/tutorial/process-model',
     'elementplus': 'https://element-plus.gitee.io/',

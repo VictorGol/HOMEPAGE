@@ -46,25 +46,39 @@ function showSuggestions(arr) {
     if (body.clientHeight * 0.9 >= arr.length * 24) { }
 }
 
-/**
- * 图片转base64
- */
+/** 图片转base64 */
 function fileImport() {
     let file = document.getElementById('file').files[0];
     // 图片大小限制2M
-    if (file.size > 2097152) {
-        showTip('请上传2M以内的图片')
-        return
-    }
+    // if (file.size > 2097152) {
+    //     showTip('请上传2M以内的图片')
+    //     return
+    // }
     const blob = new Blob([file], { type: file.type || 'application/*' })
     // const blobUrl = window.URL.createObjectURL(blob)
     let reader = new FileReader()
     reader.onload = () => {
-        setBg(reader.result)
+        file.size > 2097152 ? compression(reader.result) : setBg(reader.result);
         let bgl = document.getElementsByClassName('bgl')[0];
         wrap.removeChild(bgl)
     }
     reader.readAsDataURL(blob)
+}
+
+/** 压缩图片 */
+function compression(img) {
+    let image = new Image();
+    image.setAttribute("crossOrigin", 'anonymous');
+    image.src = img;
+    let myCanvas = document.createElement("canvas");
+    let ctx = myCanvas.getContext('2d');
+    image.onload = () => {
+        myCanvas.width = image.width;
+        myCanvas.height = image.height;
+        ctx.drawImage(image, 0, 0);
+        const url = myCanvas.toDataURL('image/jpeg', 0.7);
+        setBg(url);
+    }
 }
 
 /**
