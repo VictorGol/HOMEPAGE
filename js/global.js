@@ -57,6 +57,7 @@ const command = {
     'electron': 'https://www.electronjs.org/zh/docs/latest/tutorial/process-model',
     'elementplus': 'https://element-plus.gitee.io/',
     'elementui': 'https://element.eleme.cn/',
+    'es-checker': 'http://ruanyf.github.io/es-checker/index.cn.html',
     'fanyi': 'https://translate.google.cn/',
     'fitacg': 'https://fitacg.com',
     'flickr': 'https://www.flickr.com/',
@@ -135,3 +136,4 @@ function showTip(param) {
         clearTimeout(timeout)
     }, 1000);
 }
+

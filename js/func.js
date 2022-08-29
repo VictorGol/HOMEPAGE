@@ -12,6 +12,7 @@ function layoutChange() {
  * 显示搜索建议
  */
 function showSuggestions(arr) {
+    const colors = ['snow', 'GhostWhite', 'MintCream', 'Wheat1', 'WhiteSmoke', 'Ivory', 'FloralWhite', 'Linen', 'PapayaWhip', 'MintCream'];
     const tip = document.getElementsByClassName('tip')[0];
     tip.innerHTML = ''
     const tips = arr.join('</div><div>')
@@ -36,6 +37,8 @@ function showSuggestions(arr) {
             }
 
             span.style.top = 24 * i + 'px';
+            span.style.backgroundColor = colors[i % 6];
+            // span.style.opacity = 0.5;
         }
     }
     // 鼠标离开提示框时去除它的子元素外壳
@@ -49,11 +52,6 @@ function showSuggestions(arr) {
 /** 图片转base64 */
 function fileImport() {
     let file = document.getElementById('file').files[0];
-    // 图片大小限制2M
-    // if (file.size > 2097152) {
-    //     showTip('请上传2M以内的图片')
-    //     return
-    // }
     const blob = new Blob([file], { type: file.type || 'application/*' })
     // const blobUrl = window.URL.createObjectURL(blob)
     let reader = new FileReader()
@@ -159,9 +157,7 @@ function switchSuggestion(flag) {
     }
 }
 
-/**
- * 搜索指令
- */
+/** 搜索指令 */
 function searchCommand(val) {
     if (!val) return
     if (val === '*') {
@@ -180,4 +176,16 @@ function searchCommand(val) {
     } else {
         tip.innerHTML = ''
     }
+}
+
+
+/** 获取视频 */
+function getVideo() {
+    const file = document.getElementById('video').files[0];
+    const blob = new Blob([file], { type: file.type || 'application/*' });
+    const blobUrl = window.URL.createObjectURL(blob);
+    const video = document.getElementsByTagName('video')[0];
+    video.setAttribute('height', 720);
+    video.setAttribute('controls', true);
+    video.setAttribute('src', blobUrl);
 }

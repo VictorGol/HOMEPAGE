@@ -1,7 +1,5 @@
 
-/** 
- * 设置项与其对应的函数
- */
+/** 设置项与其对应的函数 */
 const matchObj = {
     '#': showTip,
     '#bg': setBg,
@@ -9,12 +7,11 @@ const matchObj = {
     '#eng': setEngine,
     '#pos': setPosition,
     '#trp': setBgTrp,
-    '#pre': setPreImg
+    '#pre': setPreImg,
+    '#vl': setLocalVideo
 }
 
-/**
- * 输入文本带有#时，判断要设置的选项，跳转到对应方法
- */
+/** 输入文本带有#时，判断要设置的选项，跳转到对应方法 */
 function setting(text) {
     tip.innerHTML = ''
     // 如果满足类似#bg xxx这种正常格式
@@ -28,9 +25,7 @@ function setting(text) {
     }
 }
 
-/**
- * 初始化设置
- */
+/** 初始化设置 */
 function initSetting() {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
@@ -57,6 +52,7 @@ function initSetting() {
 
 /**
  * 设置背景图，格式#bg 图片链接
+ * 
  * 只有#bg代表设置默认图片
  */
 function setBg(param) {
@@ -76,6 +72,7 @@ function setBg(param) {
 
 /**
  * 设置背景——选用本地图片，格式#bgl
+ * 
  * l时local的意思
  */
 function setLocalBg() {
@@ -86,12 +83,14 @@ function setLocalBg() {
     }
     let el = document.createElement('div');
     el.classList.add('bgl')
-    el.innerHTML = `<input type="file" name="img" id="file" onchange="fileImport()"></input>`
+    el.innerHTML = `<input type="file" name="img" id="file"\
+     accept="image/jpeg,image/jpg,image/png" onchange="fileImport()"></input>`
     wrap.appendChild(el)
 }
 
 /**
  * 设置背景透明度，格式#trp xx
+ * 
  * 取值0-1，不写或写错默认为0
  */
 function setBgTrp(param) {
@@ -111,6 +110,7 @@ function setBgTrp(param) {
 
 /**
  * 设置搜索引擎，格式#eng xxx
+ * 
  * 设置的参数需要与已设置的对应，不然会设置失败
  */
 function setEngine(param) {
@@ -133,9 +133,7 @@ function setEngine(param) {
     }
 }
 
-/**
- * 设置input框的位置，格式#pos xx
- */
+/** 设置input框的位置，格式#pos xx */
 function setPosition(param) {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
@@ -168,7 +166,25 @@ function setPreImg(val) {
         [obj.bg, obj.pre] = [obj.pre, obj.bg];
         localStorage.setItem('customSetting', JSON.stringify(obj))
         showTip('背景设置成功')
-    }else{
+    } else {
         showTip('没有上一张图片哦')
+    }
+}
+
+/** 播放视频 */
+function setLocalVideo() {
+    const vl = document.getElementsByClassName('vl');
+    const videos = document.getElementsByTagName('video');
+    if (vl.length) {
+        vl[0].remove();
+        videos[0].remove();
+    } else {
+        const div = document.createElement('div');
+        const video = document.createElement('video');
+        div.classList.add('vl');
+        div.innerHTML = `<input type="file" name="video" id="video"\
+            accept="video/mp4,image/flv,image/MKV" onchange="getVideo()"></input>`;
+        div.appendChild(video);
+        wrap.appendChild(div);
     }
 }
