@@ -1,6 +1,6 @@
-这是一个极简的[自定义首页](https://github.com/VictorGol/a-simple-homepage)
+这是一个简约的[自定义首页](https://github.com/VictorGol/a-simple-homepage)
 
-这是一个纯前端项目，只用前端三剑客，不加任何框架和库。
+用`html`、`javascript`、`css`编写
 
 # 介绍
 
