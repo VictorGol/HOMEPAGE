@@ -30,7 +30,7 @@ function initSetting() {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
     // 初始化背景
-    if (!obj.bg || (obj.bg.slice(0, 4) !== 'http' && obj.bg.slice(0, 22) !== 'data:image/jpeg;base64')) {
+    if (!obj.bg || (obj.bg.slice(0, 4) !== 'http' && obj.bg.slice(0, 5) !== 'data:')) {
         body.style.background = `url('image/bg.jpg') 50% 50%/cover`;
     } else {
         body.style.background = `url(${obj.bg}) 50% 50%/cover`;
