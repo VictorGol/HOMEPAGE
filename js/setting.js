@@ -60,6 +60,7 @@ function setBg(param) {
     let obj = str ? JSON.parse(str) : {}
     if (!param || (param.slice(0, 4) !== 'http' && param.slice(0, 5) !== 'data:')) {
         body.style.background = `url('image/bg.jpg') 50% 50%/cover`
+        obj.pre = obj.bg ? obj.bg : ''
         obj.bg = ''
     } else {
         body.style.background = `url(${param}) 50% 50%/cover`
