@@ -34,3 +34,8 @@ box.oninput = () => {
     }
     searchCommand(box.value)
 }
+
+const wrap3 = document.getElementsByClassName('wrap3')[0]
+wrap3.addEventListener('click', () => {
+    box.value = box.value ? '' : '你很棒'
+})
