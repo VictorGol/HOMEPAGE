@@ -111,6 +111,7 @@ const command = {
     'wallhere': 'https://wallhere.com/',
     'webstore': 'https://chrome.google.com/webstore/category/extensions',
     'wechat': 'https://mp.weixin.qq.com',
+	'wexin-developers': 'https://developers.weixin.qq.com/doc/',
     'weibo': 'https://weibo.com/login.php/',
     'wyy': 'https://music.163.com/',
     'yande': 'https://yande.re/post',
