@@ -167,7 +167,7 @@ function searchCommand(val) {
     let arr = [];
     val.slice(0, 1) === '*' ? val = val.slice(1) : 1 + 1;
     for (let i = 0, len = commandKeys.length; i < len; i++) {
-        if (commandKeys[i].indexOf(val) !== -1) {
+        if (commandKeys0[i].indexOf(val.toLocaleLowerCase()) !== -1) {
             arr.push(commandKeys[i])
         }
     }

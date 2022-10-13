@@ -37,5 +37,5 @@ box.oninput = () => {
 
 const wrap3 = document.getElementsByClassName('wrap3')[0]
 wrap3.addEventListener('click', () => {
-    box.value = box.value ? '' : '你很棒'
+	window.open('https://t.bilibili.com/');
 })
