@@ -31,7 +31,7 @@ function initSetting() {
     let obj = str ? JSON.parse(str) : {}
     // 初始化背景
     if (!obj.bg || (obj.bg.slice(0, 4) !== 'http' && obj.bg.slice(0, 5) !== 'data:')) {
-        body.style.background = `#777`;
+        body.style.background = `url('image/bg.jpg') 50% 50%/cover`;
     } else {
         body.style.background = `url(${obj.bg}) 50% 50%/cover`;
     }
