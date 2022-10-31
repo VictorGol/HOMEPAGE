@@ -77,6 +77,7 @@ const command = {
 	'icons.download': "https://icons.download/",
 	'ip': "https://www.ip138.com/",
 	'ipaddress': "https://www.ipaddress.com/",
+	'jd': 'https://www.jd.com',
 	'juejin': "https://juejin.cn",
 	'kaifa': "https://kaifa.baidu.com",
 	'konachan': "https://konachan.net/post",
