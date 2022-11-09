@@ -29,7 +29,8 @@ const path = {
 	'bingcn': 'https://cn.bing.com/search?q=',
 	'google': 'https://www.google.com/search?q=',
 	'fsou': 'https://fsoufsou.com/search?q=',
-	'brave': 'https://search.brave.com/search?q='
+	'brave': 'https://search.brave.com/search?q=',
+	'duck': 'https://duckduckgo.com/?q='
 }
 
 /** 自定义命令 */
@@ -42,6 +43,7 @@ const command = {
 	'bili': "https://t.bilibili.com/",
 	'bilibili': "https://www.bilibili.com/",
 	'bing': "https://cn.bing.com/",
+	'blog': "https://victorgol.github.io/DDD-BLOG/",
 	'brave': 'https://search.brave.com/',
 	'cai': "https://www.runoob.com/",
 	'csdn': "https://www.csdn.net/",
@@ -52,11 +54,13 @@ const command = {
 	'diduan': "https://ddys.tv",
 	'douyu': 'https://www.douyu.com',
 	'douyin': "https://www.douyin.com/",
+	'duckduckgo': 'https://duckduckgo.com',
 	'electron': "https://www.electronjs.org/zh/docs/latest/tutorial/process-model",
 	'elementplus': "https://element-plus.gitee.io/",
 	'elementui': "https://element.eleme.cn/",
 	'es-checker': "http://ruanyf.github.io/es-checker/index.cn.html",
 	'Fighting Design-vue3': "https://fighting.tianyuhao.cn/components/button.html",
+	'figma': 'www.figma.com',
 	'Font Awesome': "https://fontawesome.com/search?o=r&m=free",
 	'fanyi': "https://translate.google.cn/",
 	'fitacg-anime': "https://fitacg.com",
@@ -79,6 +83,7 @@ const command = {
 	'ipaddress': "https://www.ipaddress.com/",
 	'jd': 'https://www.jd.com',
 	'juejin': "https://juejin.cn",
+	'juejin--challenge': "https://juejin.cn/challenge/1?utm_source=code_nav",
 	'kaifa': "https://kaifa.baidu.com",
 	'konachan': "https://konachan.net/post",
 	'lodash': "https://lodash.com",
@@ -87,6 +92,7 @@ const command = {
 	'miyoushe-genshin': "https://bbs.mihoyo.com/ys/",
 	'nga': "https://bbs.nga.cn/thread.php?fid=650",
 	'nodejs': "https://nodejs.org/en/",
+	'nowcoder-niuke': 'https://www.nowcoder.com/exam/company',
 	'pinia': "https://pinia.vuejs.org",
 	'pixiv': "https://www.pixiv.net/",
 	'potplayer': "https://daumpotplayer.com/",
@@ -96,6 +102,7 @@ const command = {
 	'ryf': "http://www.ruanyifeng.com/blog/",
 	'ryf-github': "https://github.com/ruanyf/weekly",
 	'ruoyi': "http://www.ruoyi.vip",
+	'start-page': 'https://www.startpage.com',
 	'twitter': "https://twitter.com/",
 	'uniapp': "https://uniapp.dcloud.net.cn",
 	'unsplash': "https://unsplash.com",
