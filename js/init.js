@@ -37,5 +37,23 @@ box.oninput = () => {
 
 const wrap3 = document.getElementsByClassName('wrap3')[0]
 wrap3.addEventListener('click', () => {
-	window.open('https://t.bilibili.com/');
+    window.open('https://t.bilibili.com/');
+})
+
+const wrap4 = document.getElementsByClassName('wrap4')[0]
+const up = wrap4.getElementsByClassName('up')[0]
+const down = wrap4.getElementsByClassName('down')[0]
+const left = wrap4.getElementsByClassName('left')[0]
+const right = wrap4.getElementsByClassName('right')[0]
+up.addEventListener('click', () => {
+    setBgOffset(0, 1)
+})
+down.addEventListener('click', () => {
+    setBgOffset(0, -1)
+})
+left.addEventListener('click', () => {
+    setBgOffset(1, 0)
+})
+right.addEventListener('click', () => {
+    setBgOffset(-1, 0)
 })

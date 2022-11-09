@@ -20,6 +20,7 @@ body {
     font-size: 16px;
     font-weight: 100;
     background-color: rgba(0, 0, 0, 0.2);
+    position: relative;
 }
 
 /* 包裹input框的一层 */
@@ -156,18 +157,18 @@ body {
     transition: .2s;
 }
 
-.vl{
+.vl {
     display: flex;
     flex-direction: column;
 }
 
-.vl video{
+.vl video {
     border-radius: 2px;
     width: fit-content;
     margin-top: 10px;
 }
 
-.wrap3{
+.wrap3 {
     position: fixed;
     bottom: 10px;
     right: 10px;
@@ -178,8 +179,58 @@ body {
     transition: .5s;
 }
 
-.wrap3:hover{
+.wrap3:hover {
     background-color: rgba(65, 145, 58, 0.589);
     transition: .5s;
-	/* color:#fff; */
+    /* color:#fff; */
+}
+
+.wrap4 {
+    position: absolute;
+    top: 100px;
+    right: 100px;
+    overflow: hidden;
+    border-radius: '20px';
+    cursor: pointer;
+    user-select: none;
+}
+
+.wrap4 .up {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #cb9999;
+    color: #fff;
+}
+
+.wrap4 .down {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #71a5c7;
+    color: #fff;
+}
+
+.wrap4 .left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #cb9999;
+    color: #fff;
+}
+
+.wrap4 .right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #71a5c7;
+    color: #fff;
 }

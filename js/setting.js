@@ -29,11 +29,13 @@ function setting(text) {
 function initSetting() {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
+    let x = obj.offsetX ? obj.offsetX : 0
+    let y = obj.offsetY ? obj.offsetY : 0
     // 初始化背景
     if (!obj.bg || (obj.bg.slice(0, 4) !== 'http' && obj.bg.slice(0, 5) !== 'data:')) {
-        body.style.background = `url('image/bg.jpg') 50% 50%/cover`;
+        body.style.background = `url('image/bg.jpg') ${x}% ${y}%/cover`;
     } else {
-        body.style.background = `url(${obj.bg}) 50% 50%/cover`;
+        body.style.background = `url(${obj.bg}) ${x}% ${y}%/cover`;
     }
     // 初始化引擎
     engine = obj.engine ? path[obj.engine] ? obj.engine : 'baidu' : 'baidu'
@@ -58,12 +60,14 @@ function initSetting() {
 function setBg(param) {
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
+    let x = obj.offsetX ? obj.offsetX : 0
+    let y = obj.offsetY ? obj.offsetY : 0
     if (!param || (param.slice(0, 4) !== 'http' && param.slice(0, 5) !== 'data:')) {
-        body.style.background = `url('image/bg.jpg') 50% 50%/cover`
+        body.style.background = `url('image/bg.jpg') ${x}% ${y}%/cover`
         obj.pre = obj.bg ? obj.bg : ''
         obj.bg = ''
     } else {
-        body.style.background = `url(${param}) 50% 50%/cover`
+        body.style.background = `url(${param}) ${x}% ${y}%/cover`
         obj.pre = obj.bg ? obj.bg : ''
         obj.bg = param
     }
@@ -162,8 +166,10 @@ function setPreImg(val) {
     if (val) return
     let str = localStorage.getItem('customSetting')
     let obj = str ? JSON.parse(str) : {}
+    let x = obj.offsetX ? obj.offsetX : 0
+    let y = obj.offsetY ? obj.offsetY : 0
     if (obj.pre) {
-        body.style.background = `url(${obj.pre}) 50% 50%/cover`;
+        body.style.background = `url(${obj.pre}) ${x}% ${y}%/cover`;
         [obj.bg, obj.pre] = [obj.pre, obj.bg];
         localStorage.setItem('customSetting', JSON.stringify(obj))
         showTip('背景设置成功')
@@ -188,4 +194,27 @@ function setLocalVideo() {
         div.appendChild(video);
         wrap.appendChild(div);
     }
+}
+
+/**
+ * 设置背景图的偏移
+ */
+function setBgOffset(offsetX, offsetY) {
+    let str = localStorage.getItem('customSetting')
+    let obj = str ? JSON.parse(str) : {}
+    let [x, y] = [0, 0]
+    if (obj.offsetX == undefined || obj.offsetX == 'NAN') {
+        [x, y] = [0, 0]
+    } else {
+        x = obj.offsetX + offsetX
+        y = obj.offsetY + offsetY
+        x = x < 0 ? 0 : x
+        y = y < 0 ? 0 : y
+    }
+    if (obj.bg) {
+        body.style.background = `url(${obj.bg}) ${x}% ${y}%/cover`
+        obj.offsetX = x
+        obj.offsetY = y
+    }
+    localStorage.setItem('customSetting', JSON.stringify(obj))
 }
