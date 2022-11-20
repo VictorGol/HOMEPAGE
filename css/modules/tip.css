@@ -1,0 +1,28 @@
+.tip {
+    width: 21em;
+    color: #fff;
+    margin-top: 1em;
+    position: relative;
+    max-height: calc(100vh - 6em);
+    overflow: auto;
+}
+
+.tip::-webkit-scrollbar {
+    display: none;
+}
+
+.tip-child {
+    cursor: pointer;
+    width: 20em;
+    padding: 0 .5em;
+    border-radius: 4px;
+    white-space: nowrap;
+    transition: all .1s;
+}
+
+.tip-child:hover {
+    color: #3f3f3f;
+    transition: all .1s ease;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
