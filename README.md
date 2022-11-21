@@ -1,5 +1,9 @@
 一个有趣的自定义主页，打开 `index.html` 即可，也可将其设置为浏览器首页
 
+# 介绍
+
+这是一个除了背景图啥也没有的主页，功能如下：
+
 # 功能
 
 输入 `bg 图片链接` 可更换背景图片，例如 `bg https://images.unsplash.com/photo-1668876303651-ef4dc5814cc0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2372&q=80`
