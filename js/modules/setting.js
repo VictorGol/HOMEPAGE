@@ -11,7 +11,8 @@ const settingMapping = {
     bg: bgSet,
     bgl: bglSet,
     trp: trpSet,
-    pre: preBgSet
+    pre: preBgSet,
+    l: jump
 }
 
 function getLocalStorage() {
@@ -23,22 +24,15 @@ function setLocalStorage(val) {
 }
 
 /**
- * 通用设置
- */
-function set(fn, val) {
-    const storage = getLocalStorage()
-    fn(storage, val)
-    setLocalStorage(JSON.stringify(storage))
-}
-
-/**
  * 背景图设置
  */
-function bgSet(storage, val) {
+function bgSet(val) {
+    const storage = getLocalStorage()
     const imgUrl = val ? val : 'img/bg.jpg'
     bodyStyle.backgroundImage = `url(${imgUrl})`;
     storage.preImg = storage.bgUrl
     storage.bgUrl = imgUrl
+    setLocalStorage(JSON.stringify(storage))
 }
 
 /**
@@ -53,23 +47,27 @@ function bglSet() {
 /**
  * 设置上一张背景图
  */
-function preBgSet(storage) {
-    bgSet(storage, storage.preImg)
+function preBgSet() {
+    const storage = getLocalStorage()
+    bgSet(storage.preImg)
 }
 
 /**
  * 背景透明度设置
  */
-function trpSet(storage, val) {
+function trpSet(val) {
+    const storage = getLocalStorage()
     const trp = val ? val : '0'
     wrapStyle.backgroundColor = `rgba(0,0,0,${trp})`;
     storage.bgTransparency = trp
+    setLocalStorage(JSON.stringify(storage))
 }
 
 /**
  * 图片位置设置
  */
-function bgMove(storage, val) {
+function bgMove(val) {
+    const storage = getLocalStorage()
     let arr = val.split(' ')
     const x = parseInt(arr[0])
     const y = parseInt(arr[1])
@@ -82,13 +80,14 @@ function bgMove(storage, val) {
     bodyStyle.backgroundPosition = `${sx}% ${sy}%`;
     storage.bgPosX = sx
     storage.bgPosY = sy
+    setLocalStorage(JSON.stringify(storage))
 }
 
 /**
  * 回车键按下
  */
 function pressEnter(val, bool = true) {
-    if (bool) set(savePreWords, val)
+    if (bool) savePreWords(val)
     // 输入值格式化为数组
     let str = val.trim()
     let arr = [str]
@@ -101,7 +100,7 @@ function pressEnter(val, bool = true) {
     // 如果是设置命令
     const fn = settingMapping[arr[0]]
     if (fn) {
-        set(fn, arr[1])
+        fn(arr[1])
         return
     }
     // 如果是搜索命令，分有搜索值和无搜索值的情况
@@ -206,14 +205,16 @@ function getPreWords() {
 /**
  * 保存旧值
  */
-function savePreWords(storage, val) {
+function savePreWords(val) {
     if (!val) return
+    const storage = getLocalStorage()
     const arr = storage.preWords.split(',')
     if (arr.length === 100) {
         arr.pop()
     }
     arr.unshift(val)
     storage.preWords = arr.join(',')
+    setLocalStorage(JSON.stringify(storage))
 }
 
 /**
@@ -241,7 +242,7 @@ function fileImport() {
     // const blobUrl = window.URL.createObjectURL(blob)
     let reader = new FileReader()
     reader.onload = () => {
-        file.size > 2097152 ? compression(reader.result) : set(bgSet, reader.result);
+        file.size > 2097152 ? compression(reader.result) : bgSet(reader.result);
     }
     reader.readAsDataURL(blob)
 }
@@ -261,6 +262,13 @@ function compression(img) {
         myCanvas.height = image.height;
         ctx.drawImage(image, 0, 0);
         const url = myCanvas.toDataURL('image/jpeg', 0.7);
-        set(bgSet, url);
+        bgSet(url);
     }
+}
+
+function jump(val){
+    if(val.slice(0,4) !== 'http'){
+        val = 'https://' + val
+    }
+    window.open(val)
 }

@@ -43,13 +43,13 @@ const initArrow = () => {
     const moveArr = ['0 -1', '0 1', '-1 0', '1 0']
     for (let i = 0; i < 4; i++) {
         arrows[i].addEventListener('click', () => {
-            set(bgMove, moveArr[i])
+            bgMove(moveArr[i])
         })
         let timeout, interval;
         arrows[i].addEventListener('mousedown', () => {
             timeout = setTimeout(() => {
                 interval = setInterval(() => {
-                    set(bgMove, moveArr[i])
+                    bgMove(moveArr[i])
                 }, 100)
             }, 200);
         }, false);
@@ -78,7 +78,7 @@ const initCommand = () => {
  */
 const initOthers = () => {
     wrap.addEventListener('click', () => {
-        input.focus();
+        input.focus()
     })
     input.oninput = () => {
         pattern(input.value)

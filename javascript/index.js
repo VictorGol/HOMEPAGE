@@ -1,0 +1,2 @@
+bg.init()
+setting.init()
