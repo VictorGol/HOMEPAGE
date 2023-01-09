@@ -36,8 +36,8 @@ const setting = (function () {
         }
         // 如果是搜索命令
         const engLink = c.searchMapping[arr[0]]
-        if (engLink) {
-            window.open(engLink + arr[1] ? arr[1] : '')
+        if (engLink && arr[1]) {
+            window.open(engLink + arr[1])
             return
         }
         // 如果是自定义命令
