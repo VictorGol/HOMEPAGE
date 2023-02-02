@@ -38,7 +38,7 @@ const setting = (function () {
 
     /** 搜索 */
     function search(val) {
-        pressEnter(val, false)
+        window.open(c.commands[val])
     }
 
     /** 匹配映射命令 */
