@@ -44,7 +44,7 @@ const bg = (function () {
     /** 背景透明度设置 */
     function trpSet(val) {
         const storage = c.getStorageParse()
-        const trp = val ? val : '0'
+        const trp = val || '0'
         c.wrapStyle.backgroundColor = `rgba(0,0,0,${trp})`;
         storage.bgTransparency = trp
         c.setStorage(JSON.stringify(storage))

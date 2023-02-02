@@ -66,6 +66,8 @@ const c = (function () {
         'hifini-music': "https://www.hifini.com/",
         'hikari-animeSearchEngine': 'https://hikari.obfs.dev',
         'houdunren': "https://doc.houdunren.com",
+        'hupu': 'https://bbs.hupu.com',
+        'huya': 'https://www.huya.com',
         'iconfinder': "https://www.iconfinder.com/",
         'iconGo': 'https://icongo.github.io',
         'icons.download': "https://icons.download/",
@@ -130,6 +132,7 @@ const c = (function () {
         'youtube': "https://www.youtube.com/",
         'zhengze': "https://www.runoob.com/jsref/jsref-obj-regexp.html",
         'zhihu': "https://www.zhihu.com/",
+        'zlib': 'https://zlibsearch.1kbtool.com',
         '云效': "https://devops.aliyun.com/",
         '域名备案查询': "https://beian.miit.gov.cn/#/Integrated/index",
         '星辰': "https://wudixingxing.com/user",
@@ -140,10 +143,6 @@ const c = (function () {
         'f-nodejs-weekly': "https://nodeweekly.com/issues",
         'f-前端精读': "https://github.com/ascoders/weekly",
         'f-live-longer': "https://github.com/geekan/HowToLiveLonger",
-    }
-    /** console.log() */
-    function l(val) {
-        console.log(val)
     }
     /** 获取localStorage */
     function getStorage() {
@@ -161,7 +160,7 @@ const c = (function () {
     const colors = ['snow', 'GhostWhite', 'MintCream', 'Wheat1', 'WhiteSmoke', 'Ivory', 'FloralWhite', 'Linen', 'PapayaWhip', 'MintCream'];
     return {
         body, wrap, input, tip, bodyStyle, wrapStyle, searchMapping, commands, colors,
-        l,getStorage,getStorageParse,setStorage
+        getStorage, getStorageParse, setStorage
     }
 })();
 

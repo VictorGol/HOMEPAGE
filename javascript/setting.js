@@ -1,6 +1,6 @@
 /** 人工操作 */
 const setting = (function () {
-    
+
     /** 当前提示框的信息 */
     let moveH = {
         top: -1,
@@ -18,35 +18,22 @@ const setting = (function () {
 
     /** 回车键按下 */
     function pressEnter(val, isSaveHistory = true) {
-        if (isSaveHistory) savePreWords(val)
+        isSaveHistory && savePreWords(val)
         // 输入值格式化为数组
         let str = val.trim()
         let arr = [str];
         if (/.+\s+.+/.test(str)) {
             str = str.replace(/\s+/g, ' ')
             const ind = str.indexOf(' ')
-            arr[0] = str.slice(0, ind)
-            arr[1] = str.slice(ind + 1)
+            arr = [str.slice(0, ind), str.slice(ind + 1)]
         }
-        // 如果是普通映射
-        const fn = mapping[arr[0]]
-        if (fn) {
-            arr[1] ? fn(arr[1]) : fn()
-            return
-        }
-        // 如果是搜索命令
-        const engLink = c.searchMapping[arr[0]]
-        if (engLink && arr[1]) {
+        if (fn = mapping[arr[0]]) { // 如果是普通映射
+            fn(arr[1] || undefined)
+        } else if ((engLink = c.searchMapping[arr[0]]) && arr[1]) { // 如果是搜索命令
             window.open(engLink + arr[1])
-            return
-        }
-        // 如果是自定义命令
-        if (c.commands[arr[0]]) {
-            window.open(c.commands[arr[0]])
-            return
-        }
-        // 直接搜索
-        window.open(c.searchMapping.bing + val)
+        } else if (!arr[1] && (link = c.commands[arr[0]])) { // 如果是自定义命令
+            window.open(link)
+        } else window.open(c.searchMapping.bing + val) // 直接搜索
     }
 
     /** 搜索 */
@@ -72,11 +59,9 @@ const setting = (function () {
             addTips(keys)
             return
         }
-        let tipArr = []
+        const tipArr = []
         for (let item of keys) {
-            if (item.indexOf(val) !== -1) {
-                tipArr.push(item)
-            }
+            item.indexOf(val) !== -1 ? tipArr.push(item) : 0;
         }
         addTips(tipArr)
     }
@@ -85,12 +70,7 @@ const setting = (function () {
     function addTips(arr) {
         c.tip.innerHTML = ''
         const bacs = document.getElementsByClassName("bac")
-        let bac;
-        if (!bacs.length) {
-            bac = addTipBac()
-        } else {
-            bac = bacs[0]
-        }
+        const bac = bacs.length ? bacs[0] : addTipBac();
         for (let i = 0; i < arr.length; i++) {
             const div = document.createElement('div')
             div.classList.add('tip-child')
@@ -119,19 +99,14 @@ const setting = (function () {
 
     /** 获取旧值 */
     function getPreWords() {
-        const storage = c.getStorageParse()
-        const arr = storage.preWords.split(',')
-        addTips(arr)
+        addTips(c.getStorageParse().preWords.split(','))
     }
 
     /** 保存旧值 */
     function savePreWords(val) {
         if (!val) return
-        const storage = c.getStorageParse()
-        const arr = storage.preWords.split(',')
-        if (arr.length === 100) {
-            arr.pop()
-        }
+        const storage = c.getStorageParse(), arr = storage.preWords.split(',')
+        arr.length === 100 ? arr.pop() : 0;
         arr.unshift(val)
         storage.preWords = arr.join(',')
         c.setStorage(JSON.stringify(storage))
@@ -140,21 +115,20 @@ const setting = (function () {
     /** 添加提示背景 */
     function addTipBac() {
         const bac = document.createElement('div')
-        bac.style.display = 'none'
-        bac.style.position = 'absolute'
-        bac.style.transition = 'top .2s'
-        bac.style.width = '100%'
-        bac.style.borderRadius = '.5em'
-        bac.style.zIndex = '-1'
+        const bacStyle = bac.style
+        bacStyle.display = 'none'
+        bacStyle.position = 'absolute'
+        bacStyle.transition = 'top .2s'
+        bacStyle.width = '100%'
+        bacStyle.borderRadius = '.5em'
+        bacStyle.zIndex = '-1'
         bac.classList.add('bac')
         c.tip.appendChild(bac)
         return bac
     }
 
     function jump(val) {
-        if (val.slice(0, 4) !== 'http') {
-            val = 'https://' + val
-        }
+        val.slice(0, 4) !== 'http' ? val = 'https://' + val : 0;
         window.open(val)
     }
 
@@ -163,9 +137,7 @@ const setting = (function () {
         c.wrap.onkeydown = (e) => {
             const val = c.input.value
             if (!val) return
-            if (e.keyCode == 13) {
-                pressEnter(val)
-            }
+            e.keyCode == 13 ? pressEnter(val) : 0;
         }
         c.wrap.addEventListener('click', () => {
             c.input.focus()
