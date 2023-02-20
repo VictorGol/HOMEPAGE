@@ -1,2 +1,2 @@
-bg.init()
-setting.init()
+bg.init();
+setting.init();

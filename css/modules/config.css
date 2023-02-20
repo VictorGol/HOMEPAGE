@@ -1,37 +1,37 @@
 .config {
-    position: fixed;
-    top: 2em;
-    right: 2em;
+  position: fixed;
+  top: 2em;
+  right: 2em;
 }
 
 .arrow {
-    width: 2em;
-    height: 2em;
-    margin: 0.1em 0;
-    border-radius: 0.2em;
-    cursor: pointer;
-    user-select: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 2em;
+  height: 2em;
+  margin: 0.1em 0;
+  border-radius: 0.2em;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .color-arrow-bac-1 {
-    background-color: transparent;
-    color: transparent;
+  background-color: transparent;
+  color: transparent;
 }
 
 .color-arrow-bac-1:hover {
-    background-color: #cb9999;
-    color: #fff;
+  background-color: #cb9999;
+  color: #fff;
 }
 
 .color-arrow-bac-2 {
-    background-color: transparent;
-    color: transparent;
+  background-color: transparent;
+  color: transparent;
 }
 
 .color-arrow-bac-2:hover {
-    background-color: #71a5c7;
-    color: #fff;
+  background-color: #71a5c7;
+  color: #fff;
 }

@@ -1,6 +1,6 @@
 # 介绍
 
-一个浏览器主页，使用html、js、css编写
+一个浏览器主页，使用 html、js、css 编写
 
 # 使用
 
@@ -18,7 +18,7 @@
 
 输入文本后回车可进行搜索，默认是必应搜索，如果以 `bing 文本` 的搜索引擎加文本的格式搜索也行，可使用的搜索引擎有 `baidu` `bing` `google` `fsou` `brave` `duckduckgo` `sougou` `petal`等。
 
-输入文本会进行命令提示，点击命令会跳转到指定网页，这可以自定义(在javascript/constant.js里自行修改)
+输入文本会进行命令提示，点击命令会跳转到指定网页，这可以自定义(在 javascript/constant.js 里自行修改)
 
 输入 `past` 会显示搜索记录
 
