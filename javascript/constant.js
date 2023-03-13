@@ -22,6 +22,7 @@ const c = (function () {
   const commands = {
     ahhhhfs: "https://www.abskoop.com",
     apipost: "https://console.apipost.cn/",
+    astro: 'https://astro.build/',
     axios: "https://www.axios-http.cn/docs/intro",
     baidu: "https://www.baidu.com/",
     BgSub: "https://bgsub.cn/webapp/",
@@ -143,6 +144,7 @@ const c = (function () {
     zhengze: "https://www.runoob.com/jsref/jsref-obj-regexp.html",
     zhihu: "https://www.zhihu.com/",
     zlib: "https://zlibsearch.1kbtool.com",
+    zlibrary: 'https://singlelogin.me/',
     云效: "https://devops.aliyun.com/",
     域名备案查询: "https://beian.miit.gov.cn/#/Integrated/index",
     星辰: "https://wudixingxing.com/user",
