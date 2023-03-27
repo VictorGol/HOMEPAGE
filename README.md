@@ -4,7 +4,7 @@
 
 # 使用
 
-打开 `index.html` 即可
+浏览器打开 `index.html` 即可
 
 # 功能
 
